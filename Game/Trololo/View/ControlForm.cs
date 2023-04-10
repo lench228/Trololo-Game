@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Trololo
+namespace Trololo.View
 {
-    public partial class Form1 : Form
+    public partial class ControlForm : UserControl
     {
-        public Form1()
+        public ControlForm()
         {
             InitializeComponent();
         }

@@ -1,0 +1,12 @@
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\Trololo.exe.config
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\Trololo.exe
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\Trololo.pdb
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.AssemblyReference.cache
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.SuggestedBindingRedirects.cache
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.Properties.Resources.resources
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.GenerateResource.cache
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.CoreCompileInputs.cache
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.exe
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.pdb
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.View.MainForm.resources
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.View.ControlForm.resources
