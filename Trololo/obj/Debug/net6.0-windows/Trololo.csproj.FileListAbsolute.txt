@@ -1,0 +1,17 @@
+C:\Users\wrwsc\source\repos\Trololo\Trololo\bin\Debug\net6.0-windows\Trololo.exe
+C:\Users\wrwsc\source\repos\Trololo\Trololo\bin\Debug\net6.0-windows\Trololo.deps.json
+C:\Users\wrwsc\source\repos\Trololo\Trololo\bin\Debug\net6.0-windows\Trololo.runtimeconfig.json
+C:\Users\wrwsc\source\repos\Trololo\Trololo\bin\Debug\net6.0-windows\Trololo.dll
+C:\Users\wrwsc\source\repos\Trololo\Trololo\bin\Debug\net6.0-windows\Trololo.pdb
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.csproj.AssemblyReference.cache
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.csproj.GenerateResource.cache
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.AssemblyInfoInputs.cache
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.AssemblyInfo.cs
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.csproj.CoreCompileInputs.cache
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.dll
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\refint\Trololo.dll
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.pdb
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.genruntimeconfig.cache
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\ref\Trololo.dll
+C:\Users\wrwsc\source\repos\Trololo\Trololo\obj\Debug\net6.0-windows\Trololo.Trol.resources
