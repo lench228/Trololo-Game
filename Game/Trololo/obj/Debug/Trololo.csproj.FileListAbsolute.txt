@@ -9,4 +9,4 @@ C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.CoreCo
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.exe
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.pdb
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.View.MainForm.resources
-C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.View.ControlForm.resources
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.View.MainMenu.resources

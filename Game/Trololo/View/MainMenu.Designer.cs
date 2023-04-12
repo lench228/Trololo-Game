@@ -1,6 +1,10 @@
-﻿namespace Trololo.View
+﻿using System.Drawing;
+using System.Windows.Forms;
+using System.Drawing; 
+
+namespace Trololo.View
 {
-    partial class ControlForm
+    partial class MainMenu
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,18 +32,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Control
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.Name = "Control";
-            this.Size = new System.Drawing.Size(400, 400);
-            this.ResumeLayout(false);
+            this.BackgroundImage = new Bitmap(Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\photo_2023-04-12_17-12-07.jpg"));
+            this.Name = "Trololo";
+            this.Size = BackgroundImage.Size;
+            Button but = AddButtons("Начать игру",new Point(200,400));
+            Button but2 = AddButtons("Загрузить игру", new Point(200, 500));
+            Button but3 = AddButtons("Выйти из игры", new Point(200, 600));
 
         }
+
+        private static Button AddButtons(string text, Point location)
+        {
+            var but = new Button();
+            but.Text = text;
+            but.Location = location;
+            but.Width= 200;
+            return but;
+        }
+
 
         #endregion
     }

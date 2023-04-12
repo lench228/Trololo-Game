@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Trololo.View
 {
-    public partial class ControlForm : UserControl
+    public partial class MainMenu : UserControl
     {
-        public ControlForm()
+        public MainMenu()
         {
             InitializeComponent();
+
+
+            but.Click += But_Click;
         }
+
     }
 }

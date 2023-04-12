@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing; 
 
 namespace Trololo.View
 {
@@ -14,11 +15,22 @@ namespace Trololo.View
     {
         public MainForm()
         {
-            InitializeComponent();
-            var control = new ControlForm();
-            control.BackColor = Color.Black;
-            Controls.Add(control);
+            InitializeComponent(); 
+            var mainMenu = new MainMenu();
+            Controls.Add(mainMenu);
+        }   
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // MainForm
+            // 
+            this.ClientSize = new System.Drawing.Size(1280, 910);
+
+            this.Name = "MainForm";
+            this.ResumeLayout(false);
         }
+
     }
 }
