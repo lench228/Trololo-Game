@@ -1,33 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.IO;
 
 namespace Trololo.Domain
 {
-    class Game
+    public class Game
     {
+        public static Level level;
+        public Player player;
+        public static Image BackImage; 
 
+        public Game()
+        {
+            BackImage = new Bitmap("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\background.png");
+            level = Level.FromText(File.ReadAllText("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\levels.txt"));
+        }
     }
-
-    class Player 
-    {
-        public int Health { get => Health; set => throw new NotImplementedException(); }
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public static Bitmap Image => new Bitmap($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\hero.png"); 
-    
-    }
-
-    class Level
-    {
-
-    }
-
-    class Stepler
-    { 
-    
-    }
-
 }

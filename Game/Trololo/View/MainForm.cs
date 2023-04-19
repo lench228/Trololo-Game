@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing; 
+using System.Drawing;
+using Trololo.Domain; 
 
 namespace Trololo.View
 {
@@ -16,8 +17,10 @@ namespace Trololo.View
         public MainForm()
         {
             InitializeComponent(); 
+            var game = new Game();
             var mainMenu = new MainMenu();
             Controls.Add(mainMenu);
+            Controls.Add(new GameControl()); 
         }   
 
         private void InitializeComponent()
@@ -26,7 +29,7 @@ namespace Trololo.View
             // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(1280, 910);
+            this.ClientSize = new System.Drawing.Size(1397, 980);
 
             this.Name = "MainForm";
             this.ResumeLayout(false);

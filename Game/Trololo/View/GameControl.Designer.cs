@@ -1,10 +1,7 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using System.Drawing;
-
+﻿using System.Drawing; 
 namespace Trololo.View
 {
-    partial class MainMenu
+    partial class GameControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -30,7 +27,12 @@ namespace Trololo.View
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
-
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Size = new Size(1397, 980); 
+        }
 
         #endregion
     }

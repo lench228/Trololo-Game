@@ -17,7 +17,7 @@ namespace Trololo.View
     {
         public MainMenu()
         {
-                this.BackgroundImage = new Bitmap(Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\photo_2023-04-12_17-12-07.jpg"));
+                this.BackgroundImage = new Bitmap(Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\menu.png"));
                 this.Name = "Trololo";
                 this.Size = BackgroundImage.Size;
                 var beginGame = AddLables("Начать игру", new Point(200, 400));
@@ -27,20 +27,11 @@ namespace Trololo.View
                 Controls.Add(loadGame);
                 Controls.Add(exitGame);
 
-            loadGame.Click += (o, e) =>
-            {
-                Controls.Add(new Load());
-                Controls.Remove(this);
-
-            };
 
             beginGame.Click += (o, e) =>
             {
-                Controls.Add(new Game());
-                Controls.Remove(this); 
-                Controls.Remove(beginGame);
-                Controls.Remove(loadGame);
-                Controls.Remove(exitGame); 
+                Controls.Add(new GameControl());
+                this.Hide();
             };
 
             exitGame.Click += (o, e) =>
