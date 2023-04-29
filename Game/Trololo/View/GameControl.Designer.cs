@@ -29,11 +29,21 @@ namespace Trololo.View
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Size = new Size(1397, 980); 
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameControl));
+            this.SuspendLayout();
+            // 
+            // GameControl
+            // 
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Name = "GameControl";
+            this.Size = new System.Drawing.Size(1397, 980);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameControl_KeyDown);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
     }
 }

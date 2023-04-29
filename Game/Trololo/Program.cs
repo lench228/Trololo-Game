@@ -15,7 +15,7 @@ namespace Trololo
         [STAThread]
         static void Main()
         {
-            //var a = new Domain.Game.Player(); 
+            //var a = new Domain.Play.Player(); 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

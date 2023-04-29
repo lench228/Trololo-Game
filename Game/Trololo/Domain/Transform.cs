@@ -4,14 +4,15 @@ namespace Trololo.Domain
 {
     public class Transform
     {
-        public Point position;
+        public PointF position;
         public Size size;
+        public RectangleF rect;
 
-        public Transform(Point position, Size size)
+        public Transform(PointF position, Size size)
         {
             this.position = position;
             this.size = size;
+            this.rect = new RectangleF(position.X, position.Y, 140, 140);
         }
     }
-
 }

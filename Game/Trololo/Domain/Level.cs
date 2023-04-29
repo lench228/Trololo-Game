@@ -4,25 +4,28 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Xml.Serialization;
+    using Trololo.View;
 
     public class Level
     {
-        public readonly Tail[,] tiles;
+        public readonly Tile[,] tiles;
+        public bool Drawn = false ; 
+    
 
-        private Level(Tail[,] tiles)
+        private Level(Tile[,] tiles)
         {
             this.tiles = tiles;
         }
 
-        public static Level FromText(string text)
+        public static Level SplitLines(string text)
         {
             var lines = text.Split(new[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            return FromLines(lines);
+            return LevelCreate(lines);
         }
 
-        public static Level FromLines(string[] lines)
+        public static Level LevelCreate(string[] lines)
         {
-            var tiles = new Tail[lines[0].Length, lines.Length];
+            var tiles = new Tile[lines[0].Length, lines.Length];
             var lastTile = new Point(0, 0);
             for (var y = 0; y < lines.Length; y++)
             {
@@ -36,30 +39,34 @@
                     switch (lines[y][x])
                     {
                         case 'E':
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, default);
+                            tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
                             break;
                         case '.':
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, default);
+                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                             break;
                         case 'P':
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, default);
+                            tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
+                            Game.SetPlayerTransform(new Point(lastTile.X, lastTile.Y)); 
                             break;
                         case 'F':
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\blockTexture.png"));
+                            tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));
                             break;
                         case 'X':
-                            tiles[x,y] = new Tail(lastTile.X, lastTile.Y, default);
+                            tiles[x, y] = new ExitTile(new Point(lastTile.X, lastTile.Y));
                             break;
                         case 'G':
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\MooveEd.png"));
+                            tiles[x, y] = new GuideTile(new Point(lastTile.X, lastTile.Y));
+                            break;
+                        case 'S':
+                            tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
                             break;
                         default:
-                            tiles[x, y] = new Tail(lastTile.X, lastTile.Y, default);
+                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                             break;
-                    }
+
+                    } 
                 }
             }
-
             return new Level(tiles);
         }
     }
