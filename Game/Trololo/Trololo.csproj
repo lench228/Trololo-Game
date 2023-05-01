@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Class1.cs" />
+    <Compile Include="Domain\Enemy.cs" />
+    <Compile Include="Domain\Entity.cs" />
+    <Compile Include="Domain\CollisionsController.cs" />
+    <Compile Include="Domain\GameStages.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Level.cs" />
     <Compile Include="Domain\Player.cs" />

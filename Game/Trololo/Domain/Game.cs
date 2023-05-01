@@ -1,24 +1,28 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Trololo.View;
+using System.Collections.Generic; 
 
 namespace Trololo.Domain
 {
-    public class Game
+    public class Game : CollisionsController
     {
         private GameStage stage = GameStage.NotStarted;
         public Level level;
         public static Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
+        public static List<Enemy>  enemies; 
+        
 
         public Game() 
         {
-            player = new Player();
+            enemies = new List<Enemy>();  
             currentLevel = 1;
             stage = GameStage.NotStarted;
             LoadStage();  
@@ -36,30 +40,23 @@ namespace Trololo.Domain
             StageChanged?.Invoke(stage);
         }
 
-        public static void SetPlayerTransform(Point x)
+        public static void CreatePlayer(Point x)
         {
+            player = new Player(); 
             player.SetTransform(x);
         }
 
-
-        public bool Collide(Tile[,] tiles, Player player, PointF dMoove)
+        public static void CreateEnemy(Point x, int type)
         {
-            var rect = new RectangleF(Player.transform.position.X+dMoove.X, Player.transform.position.Y + dMoove.Y, Player.transform.size.Width, Player.transform.size.Height);
+            var enemy = new Enemy(type);   
+            enemies.Add(enemy);
 
-            if (rect.Location.X > 1200)
-                this.LoadStage();
-
-             var IMooveTo = tiles[(int)(dMoove.X > 0 ? rect.Right / 140 : rect.Left / 140),(int)(dMoove.Y > 0 ? rect.Bottom / 140 : rect.Top / 140)];
-            if (IMooveTo.IsBorder)
-            {  
-                return false;
-            }
-            return true;
+            enemy.SetTransform(x); 
         }
-
 
         public void LoadStage()
         {
+            enemies = new List<Enemy>();
             level = Level.SplitLines(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"));
             if(currentLevel < 3)
                 currentLevel += 1;

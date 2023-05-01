@@ -40,13 +40,15 @@
                     {
                         case 'E':
                             tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
+
+                            Game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0); 
                             break;
                         case '.':
                             tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                             break;
                         case 'P':
                             tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
-                            Game.SetPlayerTransform(new Point(lastTile.X, lastTile.Y)); 
+                            Game.CreatePlayer(new Point(lastTile.X, lastTile.Y)); 
                             break;
                         case 'F':
                             tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));

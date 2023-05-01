@@ -5,14 +5,12 @@ namespace Trololo.Domain
     public class Transform
     {
         public PointF position;
-        public Size size;
-        public RectangleF rect;
+        public RectangleF hitBox;
 
-        public Transform(PointF position, Size size)
+        public Transform(PointF position, RectangleF box)
         {
             this.position = position;
-            this.size = size;
-            this.rect = new RectangleF(position.X, position.Y, 140, 140);
+            hitBox = box;
         }
     }
 }
