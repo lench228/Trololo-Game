@@ -51,8 +51,10 @@
     <Compile Include="Domain\CollisionsController.cs" />
     <Compile Include="Domain\GameStages.cs" />
     <Compile Include="Domain\Game.cs" />
+    <Compile Include="Domain\hpBar.cs" />
     <Compile Include="Domain\Level.cs" />
     <Compile Include="Domain\Player.cs" />
+    <Compile Include="Domain\projectile.cs" />
     <Compile Include="Domain\Tails.cs" />
     <Compile Include="Domain\Tile.cs" />
     <Compile Include="Domain\Transform.cs" />

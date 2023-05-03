@@ -17,13 +17,12 @@ namespace Trololo.Domain
         public static Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
-        public static List<Enemy>  enemies; 
-        
+
 
         public Game() 
         {
-            enemies = new List<Enemy>();  
-            currentLevel = 1;
+
+            currentLevel = 0;
             stage = GameStage.NotStarted;
             LoadStage();  
         }
@@ -46,20 +45,17 @@ namespace Trololo.Domain
             player.SetTransform(x);
         }
 
-        public static void CreateEnemy(Point x, int type)
-        {
-            var enemy = new Enemy(type);   
-            enemies.Add(enemy);
-
-            enemy.SetTransform(x); 
-        }
-
         public void LoadStage()
         {
-            enemies = new List<Enemy>();
-            level = Level.SplitLines(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"));
-            if(currentLevel < 3)
+            if (currentLevel < 5)
                 currentLevel += 1;
+            level =  new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"));
+
+        }
+
+        internal void Hurt()
+        {
+            throw new NotImplementedException();
         }
     }
 }

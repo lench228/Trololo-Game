@@ -9,21 +9,21 @@
     public class Level
     {
         public readonly Tile[,] tiles;
-        public bool Drawn = false ; 
-    
+        public Dictionary<EnemySky, Projectile> enemies = new Dictionary<EnemySky, Projectile>();
 
-        private Level(Tile[,] tiles)
+        public Level(string text)
         {
+            tiles = SplitLines(text);
             this.tiles = tiles;
         }
 
-        public static Level SplitLines(string text)
+        private Tile[,] SplitLines(string text)
         {
             var lines = text.Split(new[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             return LevelCreate(lines);
         }
 
-        public static Level LevelCreate(string[] lines)
+        public Tile[,] LevelCreate(string[] lines)
         {
             var tiles = new Tile[lines[0].Length, lines.Length];
             var lastTile = new Point(0, 0);
@@ -39,37 +39,45 @@
                     switch (lines[y][x])
                     {
                         case 'E':
-                            tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
+                        tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
 
-                            Game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0); 
-                            break;
+                        this.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0);
+                        break;
                         case '.':
-                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
+                        break;
                         case 'P':
-                            tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
-                            Game.CreatePlayer(new Point(lastTile.X, lastTile.Y)); 
-                            break;
+                        tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
+                        Game.CreatePlayer(new Point(lastTile.X, lastTile.Y));
+                        break;
                         case 'F':
-                            tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));
+                        break;
                         case 'X':
-                            tiles[x, y] = new ExitTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new ExitTile(new Point(lastTile.X, lastTile.Y));
+                        break;
                         case 'G':
-                            tiles[x, y] = new GuideTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new GuideTile(new Point(lastTile.X, lastTile.Y));
+                        break;
                         case 'S':
-                            tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
+                        break;
                         default:
-                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
-                            break;
+                        tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
+                        break;
 
-                    } 
+                    }
                 }
             }
-            return new Level(tiles);
+            return tiles;
+        }
+
+        private void CreateEnemy(Point x, int type)
+        {
+            var enemy = new EnemySky(type);
+            enemies[enemy] = new Projectile(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\EnemyShot.png"), enemy.transform.position);
+
+            enemy.SetTransform(x);
         }
     }
 }

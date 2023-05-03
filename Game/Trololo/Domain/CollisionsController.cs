@@ -19,7 +19,7 @@ namespace Trololo.Domain
 
         private static bool IsBorder (float x, float y, Tile[,] tiles)
         {
-            if (x < 0 || x > 1400)
+            if (x < 0 || x > 1390)
                 return true; 
             if(y < 0 || y > 980)
                 return true;

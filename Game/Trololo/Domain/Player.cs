@@ -14,5 +14,7 @@ namespace Trololo.Domain
             this.texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\testPlayer.png");
             velocity = (float)4; 
         }
+
+
     }
 }
