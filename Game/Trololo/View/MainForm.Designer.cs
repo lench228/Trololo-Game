@@ -31,7 +31,7 @@
             this.mainMenu = new Trololo.View.MainMenu();
             this.gameControl = new Trololo.View.GameControl();
 
-            this.ClientSize = new System.Drawing.Size(1397, 980);
+            this.ClientSize = new System.Drawing.Size(1300, 980);
             this.Controls.Add(this.gameControl);
             this.Controls.Add(this.mainMenu);
             KeyPreview = true;

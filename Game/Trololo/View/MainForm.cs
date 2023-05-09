@@ -17,7 +17,7 @@ namespace Trololo.View
         public MainForm()
         {
             InitializeComponent();
-            this.Size = new Size(1397, 980);
+            this.Size = new Size(1380, 980);
             game = new Game();
             game.StageChanged += OnStageChanged;
             ShowMenu();

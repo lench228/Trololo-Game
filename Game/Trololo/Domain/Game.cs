@@ -14,7 +14,7 @@ namespace Trololo.Domain
     {
         private GameStage stage = GameStage.NotStarted;
         public Level level;
-        public static Player player;
+        public Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
 
@@ -39,7 +39,7 @@ namespace Trololo.Domain
             StageChanged?.Invoke(stage);
         }
 
-        public static void CreatePlayer(Point x)
+        public void CreatePlayer(Point x)
         {
             player = new Player(); 
             player.SetTransform(x);
@@ -49,8 +49,13 @@ namespace Trololo.Domain
         {
             if (currentLevel < 5)
                 currentLevel += 1;
-            level =  new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"));
+            level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this);
 
+        }
+
+        public static void GunIsPicked()
+        {
+            Player.IsWithGun= true;
         }
 
         internal void Hurt()

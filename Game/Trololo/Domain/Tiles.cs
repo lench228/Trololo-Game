@@ -12,7 +12,7 @@ namespace Trololo.Domain
         public EnemySpawn(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture =null;
         }
     }
@@ -22,7 +22,7 @@ namespace Trololo.Domain
         public EmptyTile(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = null;
         }
     }
@@ -32,7 +32,7 @@ namespace Trololo.Domain
         public FloorTile(Point position)
         {
             IsBorder = true;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\blockTexture.png");
         }
     }
@@ -45,7 +45,7 @@ namespace Trololo.Domain
             IsEnd = true;
             Name = "Exit"; 
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = null;
         }
     }
@@ -53,8 +53,9 @@ namespace Trololo.Domain
     {
         public GunTile(Point position)
         {
-            IsBorder = false; 
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 70, 70));
+            IsBorder = false;
+            IsGunTile = true; 
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
             texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Gun.png");
         }
     }
@@ -65,7 +66,7 @@ namespace Trololo.Domain
         {
 
             IsBorder = false; 
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = null;
         }
     }

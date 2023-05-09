@@ -7,6 +7,7 @@
         public Transform transform; 
         public Image texture;
         public bool IsBorder;
+        public bool IsGunTile; 
         public string Name; 
     }
 }

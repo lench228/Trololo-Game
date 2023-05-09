@@ -37,7 +37,7 @@ namespace Trololo.View
             // 
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Name = "GameControl";
-            this.Size = new System.Drawing.Size(1397, 980);
+            this.Size = new System.Drawing.Size(1375, 980);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameControl_KeyDown);
             this.ResumeLayout(false);
 

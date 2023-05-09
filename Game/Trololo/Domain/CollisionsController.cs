@@ -19,15 +19,17 @@ namespace Trololo.Domain
 
         private static bool IsBorder (float x, float y, Tile[,] tiles)
         {
-            if (x < 0 || x > 1390)
+            if (x < 0 || x > 1380)
                 return true; 
             if(y < 0 || y > 980)
                 return true;
 
-            var value = tiles[(int)(x / 140), (int)(y / 140)]; 
+            var value = tiles[(int)(x / 60), (int)(y / 60)]; 
 
             if(value.IsBorder)
                 return true;
+            if (value.IsGunTile)
+                Game.GunIsPicked(); 
             return false;
         }
     }
