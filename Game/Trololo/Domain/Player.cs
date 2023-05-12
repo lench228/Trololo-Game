@@ -14,9 +14,9 @@ namespace Trololo.Domain
 
         public List<Bullet> bullets; 
 
-        public Player()
+        public Player(int HealthCount)
         {
-            SetHealth(3);
+            SetHealth(HealthCount);
             this.texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\testPlayer.png");
             velocity = (float)4;
             if(Game.currentLevel > 2)

@@ -123,7 +123,7 @@ namespace Trololo.View
                 if (!enemy.isLoopEnd)
                     enemy.Patrol(game.level.tiles);
                 else
-                    enemy.GoDown(game.level.tiles); 
+                    enemy.GoGorizontal(game.level.tiles); 
             }
 
             
@@ -138,25 +138,28 @@ namespace Trololo.View
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            GameControlHelpers.DrawLvl(game.level, e);
-            GameControlHelpers.DrawHealth(e, game.player.GetHealth());
-
-
-            foreach (var enemy in game.level.enemies.Keys)
+            if (game.stage == GameStage.Play)
             {
-                GameControlHelpers.DrawEnemy(enemy.transform, e, enemy.texture);
-                if (enemy.isShooted)
+                GameControlHelpers.DrawLvl(game.level, e);
+                GameControlHelpers.DrawHealth(e, game.player.GetHealth());
+
+
+                foreach (var enemy in game.level.enemies.Keys)
                 {
-                    GameControlHelpers.DrawProjectile(game.level.enemies[enemy].transform, e, game.level.enemies[enemy].texture);
+                    GameControlHelpers.DrawEnemy(enemy.transform, e, enemy.texture);
+                    if (enemy.isShooted)
+                    {
+                        GameControlHelpers.DrawProjectile(game.level.enemies[enemy].transform, e, game.level.enemies[enemy].texture);
+                    }
                 }
-            }
 
-            foreach(var bullet in game.player.bullets)
-            {
-                GameControlHelpers.DrawProjectile(bullet.transform, e, bullet.texture);
-            }
+                foreach (var bullet in game.player.bullets)
+                {
+                    GameControlHelpers.DrawProjectile(bullet.transform, e, bullet.texture);
+                }
 
-            GameControlHelpers.DrawChar(game.player.transform, e, game);
+                GameControlHelpers.DrawChar(game.player.transform, e, game);
+            }
         }
 
 

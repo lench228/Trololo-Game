@@ -9,6 +9,9 @@ namespace Trololo.Domain
 
         public static bool Collide(float x, float y, float width, float height, Tile[,] tiles)
         {
+            if (tiles == null)
+                return false;
+
             if (!IsBorder(x, y, tiles))
                 if (!IsBorder(x + width, y + height, tiles))
                     if (!IsBorder(x + width, y, tiles))
@@ -19,9 +22,9 @@ namespace Trololo.Domain
 
         private static bool IsBorder (float x, float y, Tile[,] tiles)
         {
-            if (x < 0 || x > 1380)
+            if (x < 0 || x > tiles.GetLength(0) * 60)
                 return true; 
-            if(y < 0 || y > 980)
+            if(y < 0 || y > tiles.GetLength(1) * 60)
                 return true;
 
             var value = tiles[(int)(x / 60), (int)(y / 60)]; 

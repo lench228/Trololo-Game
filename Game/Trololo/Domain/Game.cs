@@ -12,7 +12,7 @@ namespace Trololo.Domain
 {
     public class Game : CollisionsController
     {
-        private GameStage stage = GameStage.NotStarted;
+        public GameStage stage = GameStage.NotStarted;
         public Level level;
         public Player player;
         public static int currentLevel;
@@ -21,15 +21,16 @@ namespace Trololo.Domain
 
         public Game() 
         {
-
             currentLevel = 0;
             stage = GameStage.NotStarted;
-            LoadStage();  
+            if(stage == GameStage.Play)
+                LoadStage();  
         }
 
 
         public void Start()
         {
+            LoadStage();
             this.ChangeStage(GameStage.Play);
         }
 
@@ -41,7 +42,10 @@ namespace Trololo.Domain
 
         public void CreatePlayer(Point x)
         {
-            player = new Player(); 
+            if (player == null)
+                player = new Player(3);
+            else
+                player = new Player(player.GetHealth());
             player.SetTransform(x);
         }
 
@@ -58,9 +62,5 @@ namespace Trololo.Domain
             Player.IsWithGun= true;
         }
 
-        internal void Hurt()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

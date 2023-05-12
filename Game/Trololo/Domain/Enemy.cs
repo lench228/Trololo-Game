@@ -41,15 +41,16 @@ namespace Trololo.Domain
                 direction = 1;
                 isLoopEnd = true;
             }
-
         }
 
-        public void GoDown(Tile[,] tiles)
+        public void GoGorizontal(Tile[,] tiles)
         {
-            if (CollisionsController.Collide(transform.position.X, transform.position.Y, transform.hitBox.Width, transform.hitBox.Height, tiles))
-                transform.Move(new PointF(0, 10 * direction));
+            if (CollisionsController.Collide(transform.position.X, transform.position.Y + 10*direction, transform.hitBox.Width, transform.hitBox.Height, tiles))
+                transform.Move(new PointF(0, 6 * direction));
             else
-                isLoopEnd = false;
+            {
+                direction= -direction;
+            }
         }
     }
 

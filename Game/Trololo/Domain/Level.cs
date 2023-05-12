@@ -13,7 +13,10 @@
 
         public Level(string text, Game game)
         {
-            tiles = SplitLines(text, game);
+            if (String.IsNullOrEmpty(text))
+                tiles = null; 
+            else 
+                 tiles = SplitLines(text, game);
         }
 
         private Tile[,] SplitLines(string text, Game game)
@@ -62,8 +65,7 @@
                         tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         default:
-                        tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
-                        break;
+                        return null; 
 
                     }
                 }

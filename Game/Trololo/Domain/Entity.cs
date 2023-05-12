@@ -8,13 +8,16 @@ namespace Trololo.Domain
         private int health;
         public static float velocity;
         public static float gravity = (float)3.25;
-        public Image texture;
+        public Image texture = null;
 
 
         public void SetTransform(PointF position)
         {
             transform.position = position;
-            transform.hitBox = new RectangleF(position.X, position.Y, texture.Width-50, texture.Height); 
+            if (texture != null)
+                transform.hitBox = new RectangleF(position.X, position.Y, texture.Width - 50, texture.Height);
+            else
+                transform.hitBox = new RectangleF(position.X, position.Y, 0, 0);
         }
 
         public int GetHealth()
@@ -24,8 +27,10 @@ namespace Trololo.Domain
 
         public void SetHealth(int health)
         {
-            this.health = health;
+            if(health > 0)
+                this.health = health;
         }
+
         public void Hurt()
         {
             health--; 
