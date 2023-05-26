@@ -25,7 +25,7 @@ namespace Trololo.Tests
                 ".....\n" +
                 ".FFF.\n" +
                 ".....\n" +
-                ".....\n", 120, 0 ,true)]
+                ".....\n", 120, 0 ,false)]
 
         [TestCase(
                 "FFFFFF\n" +

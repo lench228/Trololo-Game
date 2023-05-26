@@ -79,7 +79,7 @@ namespace Trololo.Domain
         public GuideTile(Point position)
         {
             IsBorder = false; 
-            if(number < 3)
+            if(number < 4)
                 number += 1; 
             transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
             texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Ed{number}.png");

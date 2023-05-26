@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Timers; 
 using System.Windows.Forms;
 using Trololo.Domain;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Trololo.View
 {
@@ -17,50 +17,78 @@ namespace Trololo.View
 
         private static Graphics g;
         private static Game game;
-        private static System.Timers.Timer invincibleTimer; 
-        private static System.Timers.Timer invincibleColdownTimer;
+        private static Timer invincibleTimer; 
+        private static Timer cooldownTimer;
         private bool isMovingLeft = false;
         private bool isMovingRight = false;
         private bool isJumping = false;
-        private bool isMovingDown = false;
+        private System.Windows.Forms.ProgressBar progressBar;
 
         public GameControl()
         {
             InitializeComponent();
+            progressBar = new System.Windows.Forms.ProgressBar();
+            this.Controls.Add(progressBar);
+
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 10;
             timer.Tick += new EventHandler(Update);
 
-            invincibleTimer = new System.Timers.Timer();
-            invincibleTimer.Elapsed += OnInvincibleTimerElapsed;
+            invincibleTimer = new Timer();
+            invincibleTimer.Interval = 1000; // Интервал 1 секунда
+            invincibleTimer.Tick += InvincibleTimer_Tick;
 
-            invincibleColdownTimer = new System.Timers.Timer();
-            invincibleColdownTimer.Elapsed += OnInvincibleCooldownTimerElapsed;
+            cooldownTimer = new Timer();
+            cooldownTimer.Interval = 1000; // Интервал 1 секунда
+            cooldownTimer.Tick += CooldownTimer_Tick;
 
+            RunProgressBar();
+        }
+
+        private void InvincibleTimer_Tick(object sender, EventArgs e)
+        {
+            Player.invincibleTime -= 1000; // Уменьшаем время непобедимого режима на 1 секунду
+
+            if (Player.invincibleTime <= 0)
+            {
+                invincibleTimer.Stop();
+                game.player.IsInvincible = false;
+                game.player.UnsetInvins();
+                // Запускаем отсчет времени до следующего использования непобедимого режима
+                cooldownTimer.Start();
+                Player.invincibleTime = 5000; 
+            }
+        }
+
+        private void CooldownTimer_Tick(object sender, EventArgs e)
+        {
+            progressBar.Value += 1000; // Увеличиваем значение прогресс-бара на 1
+            Player.invincibleCooldown -= 1000; // Уменьшаем время отката непобедимого режима на 1 секунду
+
+            if (Player.invincibleCooldown <= 0)
+            {
+                cooldownTimer.Stop();
+                progressBar.Value = 0;
+                Player.invincibleCooldown = 20000;
+            }
+        }
+        private void RunProgressBar()
+        {
+            progressBar.Minimum = 0;
+            progressBar.Maximum = (int)Player.invincibleCooldown; 
+            progressBar.Value = 0;
+            progressBar.Location = new Point(360, 870);
+            progressBar.Size = new Size(180, 60);
         }
         private void ActivateInvincibleMode()
         {
-            if (!game.player.IsInvincible && invincibleColdownTimer.Enabled == false)
+            if (!game.player.IsInvincible && Player.invincibleCooldown == 20000)
             {
                 game.player.SetInvins(); 
-                invincibleTimer.Interval = Player.invincibleTime;
                 invincibleTimer.Start();
             }
         }
 
-        private void OnInvincibleTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            game.player.IsInvincible = false;
-            invincibleColdownTimer.Interval = Player.invincibleCooldown;
-            game.player.UnsetInvins();
-            invincibleColdownTimer.Start();
-            invincibleTimer.Stop();
-        }
-
-        private void OnInvincibleCooldownTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            invincibleColdownTimer.Stop();
-        }
 
         public void Run(Game Game)
         {
@@ -68,12 +96,14 @@ namespace Trololo.View
             DoubleBuffered = true;
             game = Game;
             MouseClick += GameControl_MouseClick;
-            this.KeyUp += Form_KeyUp;
+            this.KeyUp += Game_Control;
+
+
         }
 
         private void GameControl_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Player.IsWithGun)
+            if (Player.IsWithGun && game.player.bullets.Count < 3)
             {
                 game.player.IsShooting = true;
                 game.player.bullets.Add(new Bullet(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\PlayerShoot.png"), game.player.transform.position,game.player.transform.Direction));
@@ -93,7 +123,7 @@ namespace Trololo.View
             GravitationWork();
             var toDeleteEnemies = new Dictionary<EnemySky, EnemyShoot>();
             var toDeletePlayerShoots = new List<Bullet>();  
-            if (game.player.transform.position.X +game.player.transform.hitBox.Width>= 1240)
+            if (game.player.transform.position.X + game.player.transform.hitBox.Width>= 1360 && game.enemies.Count == 0)
                 game.LoadStage(true);
             if (game.player.IsShooting)
                 UpdatePlayerShots(game.player, game.player.bullets, toDeleteEnemies, toDeletePlayerShoots);
@@ -181,9 +211,6 @@ namespace Trololo.View
         private void UpdateCharacterMovement()
         {
             var move = new PointF(0, 0);
-
-
-            // Выполнение действий на основе состояния клавиш
             if (isMovingLeft)
             {
                 move.X -= game.player.velocity;
@@ -200,7 +227,7 @@ namespace Trololo.View
             if (isJumping && !game.player.IsJumping)
             {
                 move.X += 0;
-                move.Y -= game.player.velocity*12;
+                move.Y -= game.player.velocity*15;
                 game.player.IsJumping = true;
             }
             if (HelpMethods.Collide(game.player.transform.hitBox, game.player.transform.position.X + move.X, game.player.transform.position.Y + move.Y, game.player.transform.hitBox.Width, game.player.transform.hitBox.Height, game.level.tiles))
@@ -258,7 +285,7 @@ namespace Trololo.View
 
         }
 
-        private void Form_KeyUp(object sender, KeyEventArgs e)
+        private void Game_Control(object sender, KeyEventArgs e)
         {
             // Обработка отпускания клавиш
             if (e.KeyCode == Keys.A)

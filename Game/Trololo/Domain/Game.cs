@@ -91,9 +91,9 @@ namespace Trololo.Domain
         public void LoadStage(bool isNextToLoad)
         {
 
-            if (currentLevel < 5 && isNextToLoad)
+            if (currentLevel < 10 && isNextToLoad)
                 currentLevel += 1;
-            if(stage != GameStage.Pause)
+            if(stage == GameStage.Pause && stage == GameStage.End)
                 enemies = new Dictionary<EnemySky, EnemyShoot>();
             level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this, isNextToLoad);
 
