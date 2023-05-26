@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trololo.Domain;
+using Levels; 
 
 namespace Trololo.Tests
 {
@@ -77,9 +78,9 @@ namespace Trololo.Tests
         [Test]
         public void CollideTest(String level, float playerPositionX, float playerPositionY, bool expected)
         {
-            var tiles = new Level(level, new Game()).tiles; 
+            var tiles = new Level(level, new Game(), true).tiles; 
        
-            Assert.AreEqual(expected, CollisionsController.Collide(playerPositionX, playerPositionY, 116, 243, tiles));
+            Assert.AreEqual(expected, HelpMethods.Collide(new RectangleF(playerPositionX, playerPositionX,116, 243), playerPositionX, playerPositionY, 116, 243, tiles));
         }
     }
 }

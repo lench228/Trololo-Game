@@ -1,4 +1,6 @@
-﻿namespace Trololo.View
+﻿using System.Runtime.CompilerServices;
+
+namespace Trololo.View
 {
     partial class MainForm
     {
@@ -30,10 +32,14 @@
         {
             this.mainMenu = new Trololo.View.MainMenu();
             this.gameControl = new Trololo.View.GameControl();
+            this.looseControl = new Trololo.View.LooseControl(); 
+            this.pauseControl = new Trololo.View.PauseControl();
 
             this.ClientSize = new System.Drawing.Size(1300, 980);
             this.Controls.Add(this.gameControl);
             this.Controls.Add(this.mainMenu);
+            this.Controls.Add(this.looseControl);
+            this.Controls.Add(this.pauseControl); 
             KeyPreview = true;
         }
 
@@ -41,5 +47,7 @@
 
         private MainMenu mainMenu;
         private GameControl gameControl;
+        private LooseControl looseControl;
+        private PauseControl pauseControl; 
     }
 }

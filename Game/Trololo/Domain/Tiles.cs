@@ -55,8 +55,9 @@ namespace Trololo.Domain
         {
             IsBorder = false;
             IsGunTile = true; 
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+
             texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Gun.png");
+            transform = new Transform(position, new RectangleF(position.X, position.Y, texture.Size.Width, texture.Size.Width));
         }
     }
 
@@ -78,7 +79,7 @@ namespace Trololo.Domain
         public GuideTile(Point position)
         {
             IsBorder = false; 
-            if(number < 4)
+            if(number < 3)
                 number += 1; 
             transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
             texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Ed{number}.png");

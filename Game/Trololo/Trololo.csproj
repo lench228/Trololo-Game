@@ -56,7 +56,7 @@
     <Compile Include="Domain\Bullets.cs" />
     <Compile Include="Domain\Enemy.cs" />
     <Compile Include="Domain\Entity.cs" />
-    <Compile Include="Domain\CollisionsController.cs" />
+    <Compile Include="Domain\HelpMethods.cs" />
     <Compile Include="Domain\GameStages.cs" />
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Level.cs" />
@@ -78,7 +78,7 @@
     <Compile Include="View\GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\GameControlHelpers.cs" />
+    <Compile Include="View\GraphicsDraw.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +90,18 @@
     </Compile>
     <Compile Include="View\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LooseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\LooseControl.Designer.cs">
+      <DependentUpon>LooseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PauseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PauseControl.Designer.cs">
+      <DependentUpon>PauseControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

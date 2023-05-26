@@ -1,16 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms;
-using Trololo.View;
-using System.Collections.Generic; 
+
+using Levels;
 
 namespace Trololo.Domain
 {
-    public class Game : CollisionsController
+    public class Game : HelpMethods
     {
         public GameStage stage = GameStage.NotStarted;
         public Level level;
@@ -18,21 +16,62 @@ namespace Trololo.Domain
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
 
+        public Dictionary<EnemySky, EnemyShoot> enemies = new Dictionary<EnemySky, EnemyShoot>();
+
+        public void CreateEnemy(Point x, int type, Game game, bool flag)
+        {
+            var enemy = new EnemySky(type);
+            enemies[enemy] = new EnemyShoot(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\EnemyShot.png"), enemy.transform.position, game.player);
+            enemy.SetTransform(x);
+        }
 
         public Game() 
         {
             currentLevel = 0;
             stage = GameStage.NotStarted;
             if(stage == GameStage.Play)
-                LoadStage();  
+                LoadStage(false);  
         }
 
+        public void SetPause()
+        {
+            ChangeStage(GameStage.Pause);
+        }
+
+        public void ContinueGame()
+        {
+
+            LoadStage(false);
+            this.ChangeStage(GameStage.Play); 
+        }
 
         public void Start()
         {
-            LoadStage();
+            LoadStage(true);
             this.ChangeStage(GameStage.Play);
         }
+
+        public void ShowMenu()
+        {
+            player.SetHealth(3);
+            currentLevel = 0;
+            player.IsShooting = false;
+            enemies = new Dictionary<EnemySky, EnemyShoot>(); 
+            ChangeStage(GameStage.Menu); 
+        }
+
+        public void RestartLevel()
+        {
+            player.SetHealth(3); 
+            LoadStage(false);
+            this.ChangeStage(GameStage.Play); 
+        }
+
+        public void Death()
+        {
+            this.ChangeStage(GameStage.End);
+        }
+
 
         private void ChangeStage(GameStage stage)
         {
@@ -49,11 +88,14 @@ namespace Trololo.Domain
             player.SetTransform(x);
         }
 
-        public void LoadStage()
+        public void LoadStage(bool isNextToLoad)
         {
-            if (currentLevel < 5)
+
+            if (currentLevel < 5 && isNextToLoad)
                 currentLevel += 1;
-            level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this);
+            if(stage != GameStage.Pause)
+                enemies = new Dictionary<EnemySky, EnemyShoot>();
+            level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this, isNextToLoad);
 
         }
 

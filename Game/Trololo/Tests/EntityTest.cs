@@ -29,7 +29,7 @@ namespace Trololo.Tests
         [TestCase(1, 1000, 1, 1000)]
 
         [Test]
-        public void TestTransformTest(float x, float y, float expectedX, float expectedY)
+        public void SetTransformTest(float x, float y, float expectedX, float expectedY)
         {
             var a = new Entity();
 

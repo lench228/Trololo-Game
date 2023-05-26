@@ -18,7 +18,7 @@ namespace Trololo.Domain
         {
             SetHealth(3);
             this.texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\EnemySky.png");
-            velocity = (float)2;
+            this.velocity = (float)5;
             enemyType = Type;
             isShooted = false;
         }
@@ -27,7 +27,7 @@ namespace Trololo.Domain
         {
 
             var move = new PointF(direction * velocity * 2, 0);
-            if (CollisionsController.Collide(move.X + transform.position.X, move.Y + transform.position.Y, transform.hitBox.Width, transform.hitBox.Height, tiles))
+            if (HelpMethods.Collide(transform.hitBox, move.X + transform.position.X, move.Y + transform.position.Y, transform.hitBox.Width, transform.hitBox.Height, tiles))
             {
                 transform.Move(move);
             }
@@ -45,7 +45,7 @@ namespace Trololo.Domain
 
         public void GoGorizontal(Tile[,] tiles)
         {
-            if (CollisionsController.Collide(transform.position.X, transform.position.Y + 10*direction, transform.hitBox.Width, transform.hitBox.Height, tiles))
+            if (HelpMethods.Collide(transform.hitBox, transform.position.X, transform.position.Y + 10*direction, transform.hitBox.Width, transform.hitBox.Height, tiles))
                 transform.Move(new PointF(0, 6 * direction));
             else
             {

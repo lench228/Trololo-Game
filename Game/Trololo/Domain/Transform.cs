@@ -21,6 +21,5 @@ namespace Trololo.Domain
             hitBox.X += moove.X;
             hitBox.Y += moove.Y;
         }
-
     }
 }

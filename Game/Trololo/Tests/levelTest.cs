@@ -2,6 +2,8 @@
 using System;
 using System.Drawing;
 using Trololo.Domain;
+using Levels;
+using System.Management.Instrumentation;
 
 namespace Trololo.Tests
 {
@@ -15,10 +17,24 @@ namespace Trololo.Tests
         [Test]
         public void LevelIsNull(String levelTxt)
         {
-            var level = new Level(levelTxt, new Game());
+            var level = new Level(levelTxt, new Game(), true);
             Assert.IsNull(level.tiles);
         }
 
+
+        [TestCase("", new String[0])]
+        [TestCase("ss", new String[1] {"ss"})]
+        [TestCase("beb\nbeb", new String[2] {"beb", "beb"})]
+        [TestCase("\n\n\nd", new String[1] { "d" })]
+        [TestCase("O\nL\nD", new String[3] { "O", "L", "D" })]
+
+
+        [Test]
+        public static void SplitLinesTests(string text, string[] expected)
+        {
+            var a = Level.SplitLines(text, new Game()); 
+            Assert.AreEqual(expected, a);
+        }
 
         [Test]
         public void CorrectTileLocation()
@@ -26,7 +42,7 @@ namespace Trololo.Tests
             var result = new Tile[2, 2]{{new FloorTile(new System.Drawing.Point(0, 0)), new FloorTile(new System.Drawing.Point(0,60))},
             { new FloorTile(new System.Drawing.Point(60, 0)), new FloorTile(new System.Drawing.Point(60, 60)) } };
 
-            var level = new Level("FF\nFF", new Game());
+            var level = new Level("FF\nFF", new Game(), true);
             CompareLevel(result, level);
         }
 
@@ -50,7 +66,7 @@ namespace Trololo.Tests
                 }
             };
 
-            var level = new Level("FFFF\nFFFF", new Game());
+            var level = new Level("FF\nFF\nFF\nFF", new Game(), true);
             CompareLevel(result, level);
         }
 

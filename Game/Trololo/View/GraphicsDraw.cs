@@ -5,15 +5,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using Trololo.Domain;
 using Trololo.View;
+using Levels; 
 
-internal static class GameControlHelpers
+internal static class GraphicsDraw
 {
         private static Game game;
 
     public static void DrawChar(Transform transform, PaintEventArgs e, Game game)
     {
-        e.Graphics.DrawImage(game.player.texture, transform.position.X, transform.position.Y, transform.hitBox.Width + 40, transform.hitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.position.X, (int)transform.position.Y, (int)transform.hitBox.Width, (int)transform.hitBox.Height));
+        e.Graphics.DrawImage(game.player.texture, transform.position.X, transform.position.Y, transform.hitBox.Width, transform.hitBox.Height);
+
+        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.hitBox.X, (int)transform.hitBox.Y, (int)transform.hitBox.Width, (int)transform.hitBox.Height));
     }
 
     public static void DrawEnemy(Transform transform, PaintEventArgs e, Image enemyTexture)

@@ -18,7 +18,7 @@ namespace Trololo.Domain
 
         public void Shoot()
         {
-                transform.Move(new PointF(velocity * direction * 4, 0));  
+           transform.Move(new PointF(velocity * direction * 4, 0));  
         }
     }
 }

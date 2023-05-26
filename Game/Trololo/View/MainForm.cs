@@ -30,16 +30,18 @@ namespace Trololo.View
                 case GameStage.Menu:
                 ShowMenu();
                 break;
+
                 case GameStage.Play:
                 ShowGameControl();
                 break;
-                //case GameStage.Finished:
-                //ShowPause();
-                //break;
-                //case GameStage.NotStarted:
-                //default:
-                //ShowDeath();
-                //break;
+
+                case GameStage.End:
+                ShowDeath();
+                break;
+
+                case GameStage.Pause:
+                ShowPause();
+                break;
             }
 
         }
@@ -48,11 +50,14 @@ namespace Trololo.View
         {
             mainMenu.Hide();
             gameControl.Hide();
+            looseControl.Hide();
+            pauseControl.Hide();
         }
 
         private void ShowGameControl()
         {
             HideScreens();
+            GameControl.timer.Start(); 
             gameControl.Run(game);
             ActiveControl = gameControl; 
             gameControl.Show(); 
@@ -67,18 +72,19 @@ namespace Trololo.View
 
 
 
-        //private void ShowPause()
-        //{
-        //    HideScreens();
-        //    battleControl.Configure(game);
-        //    battleControl.Show();
-        //}
+        private void ShowPause()
+        {
+            HideScreens();
+            GameControl.timer.Stop();
+            pauseControl.Run(game);
+            pauseControl.Show();
+        }
 
-        //private void ShowDeath()
-        //{
-        //    HideScreens();
-        //    finishedControl.Configure(game);
-        //    finishedControl.Show();
-        //}
+        private void ShowDeath()
+        {
+            HideScreens();
+            looseControl.Run(game);
+            looseControl.Show();
+        }
     }
 }

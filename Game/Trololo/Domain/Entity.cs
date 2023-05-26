@@ -6,8 +6,8 @@ namespace Trololo.Domain
     {
         public Transform transform = new Transform(new PointF(0,0), new RectangleF());
         private int health;
-        public static float velocity;
-        public static float gravity = (float)3.25;
+        public float velocity;
+        public static float gravity = (float)3;
         public Image texture = null;
 
 
@@ -15,7 +15,7 @@ namespace Trololo.Domain
         {
             transform.position = position;
             if (texture != null)
-                transform.hitBox = new RectangleF(position.X, position.Y, texture.Width - 50, texture.Height);
+                transform.hitBox = new RectangleF(position.X, position.Y, texture.Width, texture.Height);
             else
                 transform.hitBox = new RectangleF(position.X, position.Y, 0, 0);
         }

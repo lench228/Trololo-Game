@@ -1,31 +1,33 @@
-﻿namespace Trololo.Domain
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Xml.Serialization;
-    using Trololo.View;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 
+using Trololo.Domain;
+
+namespace Levels
+{
     public class Level
     {
         public readonly Tile[,] tiles;
-        public Dictionary<EnemySky, EnemyShoot> enemies = new Dictionary<EnemySky, EnemyShoot>();
 
-        public Level(string text, Game game)
+        public Level(string text, Game game, bool flag)
         {
             if (String.IsNullOrEmpty(text))
-                tiles = null; 
-            else 
-                 tiles = SplitLines(text, game);
+                tiles = null;
+            else
+            {
+                var stringTiles = SplitLines(text, game);
+                tiles = LevelCreate(stringTiles, game, flag);
+            }
         }
 
-        private Tile[,] SplitLines(string text, Game game)
+        public static String[] SplitLines(string text, Game game)
         {
             var lines = text.Split(new[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            return LevelCreate(lines, game);
+            return lines;
         }
 
-        public Tile[,] LevelCreate(string[] lines, Game game)
+        public Tile[,] LevelCreate(string[] lines, Game game, bool flag)
         {
             var tiles = new Tile[lines[0].Length, lines.Length];
             var lastTile = new Point(0, 0);
@@ -41,16 +43,27 @@
                     switch (lines[y][x])
                     {
                         case 'E':
-                        tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
-
-                        this.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game);
+                        if (flag)
+                        {
+                            tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
+                            game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game, flag);
+                        }
+                        else
+                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case '.':
                         tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case 'P':
-                        tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
-                        game.CreatePlayer(new Point(lastTile.X, lastTile.Y));
+                        if (flag)
+                        {
+                            tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
+                            game.CreatePlayer(new Point(lastTile.X, lastTile.Y));
+                        }
+                        else
+                        {
+                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
+                        }
                         break;
                         case 'F':
                         tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));
@@ -73,11 +86,5 @@
             return tiles;
         }
 
-        private void CreateEnemy(Point x, int type, Game game)
-        {
-            var enemy = new EnemySky(type);
-            enemies[enemy] = new EnemyShoot(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\EnemyShot.png"), enemy.transform.position, game.player);
-            enemy.SetTransform(x);
-        }
     }
 }
