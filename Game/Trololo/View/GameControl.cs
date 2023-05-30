@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Trololo.Domain;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Media; 
 
 namespace Trololo.View
 {
@@ -23,6 +21,10 @@ namespace Trololo.View
         private bool isMovingRight = false;
         private bool isJumping = false;
         private System.Windows.Forms.ProgressBar progressBar;
+        private static  SoundPlayer enemyShootPlayer;
+        private static SoundPlayer playerShootPlayer;
+        private static SoundPlayer mvpSound; 
+
 
         public GameControl()
         {
@@ -41,7 +43,9 @@ namespace Trololo.View
             cooldownTimer = new Timer();
             cooldownTimer.Interval = 1000; // Интервал 1 секунда
             cooldownTimer.Tick += CooldownTimer_Tick;
-
+            enemyShootPlayer = new SoundPlayer($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Sound\\EnemyShoot.wav");
+            playerShootPlayer = new SoundPlayer($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Sound\\PlayerShoot.wav");
+            mvpSound = new SoundPlayer($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Sound\\mvpSound.wav");
             RunProgressBar();
         }
 
@@ -53,6 +57,7 @@ namespace Trololo.View
             {
                 invincibleTimer.Stop();
                 game.player.IsInvincible = false;
+                game.player.IsShooting = true; 
                 game.player.UnsetInvins();
                 // Запускаем отсчет времени до следующего использования непобедимого режима
                 cooldownTimer.Start();
@@ -86,6 +91,10 @@ namespace Trololo.View
             {
                 game.player.SetInvins(); 
                 invincibleTimer.Start();
+                game.player.IsShooting = false; 
+                mvpSound.LoadAsync();
+                mvpSound.Play();
+                mvpSound.Dispose();
             }
         }
 
@@ -97,8 +106,6 @@ namespace Trololo.View
             game = Game;
             MouseClick += GameControl_MouseClick;
             this.KeyUp += Game_Control;
-
-
         }
 
         private void GameControl_MouseClick(object sender, MouseEventArgs e)
@@ -107,13 +114,16 @@ namespace Trololo.View
             {
                 game.player.IsShooting = true;
                 game.player.bullets.Add(new Bullet(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\PlayerShoot.png"), game.player.transform.position,game.player.transform.Direction));
+                playerShootPlayer.LoadAsync();
+                playerShootPlayer.Play();
+                playerShootPlayer.Dispose();
             }
         }
 
         private void Update(object sender, EventArgs e)
         {
             UpdateCharacterMovement(); 
-            if (game.player.GetHealth() == 0)
+            if (game.player.GetHealth() <= 0)
             {
                 timer.Stop();
                 game.Death();
@@ -174,6 +184,9 @@ namespace Trololo.View
                     shoot.transform = new Transform(enemy.transform.position, new RectangleF(enemy.transform.position.X, enemy.transform.position.Y, 120, 120));
                     enemy.isShooted = true;
                     shoot.Shoot(game.player.transform.position.X, game.player.transform.position.Y);
+                    enemyShootPlayer.LoadAsync();
+                    enemyShootPlayer.Play();
+                    enemyShootPlayer.Dispose();
                 }
                 if (enemy.isShooted)
                 {
@@ -186,7 +199,6 @@ namespace Trololo.View
 
                     if (!HelpMethods.Collide(game.player.transform.hitBox, shoot.transform.position.X, shoot.transform.position.Y, 100, 100, game.level.tiles))
                     {
-                        ///enemies[enemy] = null;
                         enemy.isShooted = false;
                     }
                 }
@@ -196,7 +208,6 @@ namespace Trololo.View
                     enemy.GoGorizontal(game.level.tiles); 
             }
         }
-
 
 
         public void GravitationWork()
@@ -287,7 +298,6 @@ namespace Trololo.View
 
         private void Game_Control(object sender, KeyEventArgs e)
         {
-            // Обработка отпускания клавиш
             if (e.KeyCode == Keys.A)
                 isMovingLeft = false;
             else if (e.KeyCode == Keys.D)

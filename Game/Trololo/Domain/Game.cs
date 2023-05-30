@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-
 using Levels;
 
 namespace Trololo.Domain
@@ -15,7 +14,7 @@ namespace Trololo.Domain
         public Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
-
+        
         public Dictionary<EnemySky, EnemyShoot> enemies = new Dictionary<EnemySky, EnemyShoot>();
 
         public void CreateEnemy(Point x, int type, Game game, bool flag)
@@ -96,7 +95,6 @@ namespace Trololo.Domain
             if(stage == GameStage.Pause && stage == GameStage.End)
                 enemies = new Dictionary<EnemySky, EnemyShoot>();
             level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this, isNextToLoad);
-
         }
 
         public static void GunIsPicked()
