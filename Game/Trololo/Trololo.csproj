@@ -53,72 +53,73 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Bullets.cs" />
-    <Compile Include="Domain\Enemy.cs" />
-    <Compile Include="Domain\Entity.cs" />
-    <Compile Include="Domain\HelpMethods.cs" />
+    <Compile Include="Domain\Projectiles\Bullets.cs" />
+    <Compile Include="Domain\Entity\Enemy.cs" />
+    <Compile Include="Domain\Entity\Entity.cs" />
+    <Compile Include="Domain\CollitionsControl.cs" />
     <Compile Include="Domain\GameStages.cs" />
     <Compile Include="Domain\Game.cs" />
-    <Compile Include="Domain\Level.cs" />
-    <Compile Include="Domain\Player.cs" />
-    <Compile Include="Domain\EnemyShot.cs" />
-    <Compile Include="Domain\Projectile.cs" />
-    <Compile Include="Domain\Tiles.cs" />
-    <Compile Include="Domain\Tile.cs" />
+    <Compile Include="Domain\Level\Level.cs" />
+    <Compile Include="Domain\Entity\Player.cs" />
+    <Compile Include="Domain\Projectiles\EnemyShoot.cs" />
+    <Compile Include="Domain\Projectiles\Projectile.cs" />
+    <Compile Include="Domain\Level\Tiles.cs" />
+    <Compile Include="Domain\Level\Tile.cs" />
     <Compile Include="Domain\Transform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tests\CollisionsTest.cs" />
     <Compile Include="Tests\EntityTest.cs" />
     <Compile Include="Tests\TransformTest.cs" />
     <Compile Include="Tests\levelTest.cs" />
-    <Compile Include="View\GameControl.cs">
+    <Compile Include="View\Controls\GameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\GameControl.Designer.cs">
+    <Compile Include="View\Controls\GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\GraphicsDraw.cs" />
+    <Compile Include="View\GraphicsMethods.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\MainMenu.cs">
+    <Compile Include="View\Controls\MainMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\MainMenu.Designer.cs">
+    <Compile Include="View\Controls\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\LooseControl.cs">
+    <Compile Include="View\Controls\LooseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\LooseControl.Designer.cs">
+    <Compile Include="View\Controls\LooseControl.Designer.cs">
       <DependentUpon>LooseControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\PauseControl.cs">
+    <Compile Include="View\Controls\PauseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\PauseControl.Designer.cs">
+    <Compile Include="View\Controls\PauseControl.Designer.cs">
       <DependentUpon>PauseControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="View\GameControl.resx">
+    <EmbeddedResource Include="View\Controls\GameControl.resx">
       <DependentUpon>GameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\MainMenu.resx">
+    <EmbeddedResource Include="View\Controls\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -135,8 +136,108 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="View\Sound\" />
+    <None Include="Domain\Levels\level1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\Levels\level7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Sound\EnemyShoot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Sound\mvpSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Sound\PlayerShoot.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\blockTexture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\ContinueButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\DeathScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Ed1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Ed2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Ed3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Ed4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Enemy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\EnemyGround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\EnemyShot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\enemySky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\gun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\HealthEmpty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\HealthFull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\InvinsiblePlayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\PauseBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\PauseMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\PlayerShoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\RotatedInvinsiblePlayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\testPlayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\testPlayerRotated.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\ToMenuButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

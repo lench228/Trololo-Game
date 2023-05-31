@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trololo.Domain; 
+using Trololo.Domain;
+using Trololo.Properties;
 
 namespace Trololo.View
 {
@@ -23,10 +24,10 @@ namespace Trololo.View
         {
             game = Game; 
             this.Size = new Size(1380, 980);
-            this.BackgroundImage = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\PauseBack.png");
+            this.BackgroundImage = Resources.PauseBack;
 
-            var aPict = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\ContinueButton.png");
-            var bPict = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\ToMenuButton.png"); 
+            var aPict = Resources.ContinueButton;
+            var bPict = Resources.ToMenuButton; 
             var a = new PictureBox();
             a.Image = aPict; 
             var b = new PictureBox();
@@ -34,9 +35,10 @@ namespace Trololo.View
 
             b.Size = bPict.Size;
             a.Size = aPict.Size;
-            a.BackColor = Color.Transparent
-                ;
+
+            a.BackColor = Color.Transparent;
             b.BackColor = Color.Transparent;
+
             a.Location = new Point(50, 100);
             b.Location = new Point(50, 500);
 

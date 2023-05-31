@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trololo.Domain;
+using Trololo.Properties;
 
 namespace Trololo.View
 {
@@ -22,7 +23,7 @@ namespace Trololo.View
         private Game game; 
         public void Run(Game Game)
         {
-            var s = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\DeathScreen.png");
+            var s = Resources.DeathScreen;
             game = Game; 
             this.BackgroundImage = s;
             var a = new Label();

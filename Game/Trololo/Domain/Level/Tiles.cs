@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Trololo.Properties;
 
 namespace Trololo.Domain
 {
@@ -33,7 +34,7 @@ namespace Trololo.Domain
         {
             IsBorder = true;
             transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\blockTexture.png");
+            texture = Resources.blockTexture;
         }
     }
 
@@ -56,7 +57,7 @@ namespace Trololo.Domain
             IsBorder = false;
             IsGunTile = true; 
 
-            texture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Gun.png");
+            texture = Resources.gun;
             transform = new Transform(position, new RectangleF(position.X, position.Y, texture.Size.Width, texture.Size.Width));
         }
     }
@@ -65,7 +66,6 @@ namespace Trololo.Domain
     {
         public PlayerSpawn(Point position)
         {
-
             IsBorder = false; 
             transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = null;
@@ -75,14 +75,13 @@ namespace Trololo.Domain
     public class GuideTile : Tile
     {
         public static int number = 0;
-        
         public GuideTile(Point position)
         {
             IsBorder = false; 
             if(number < 4)
                 number += 1; 
             transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
-            texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\Ed{number}.png");
+            texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Images\\Ed{number}.png");
         }
     }
 }

@@ -5,7 +5,7 @@ using Trololo.View;
 
 namespace Trololo.Domain
 {
-    public class HelpMethods
+    public class CollitionsControl
     {
 
 

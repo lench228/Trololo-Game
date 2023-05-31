@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Trololo.Domain;
-using System.Media; 
+using System.Media;
+using Trololo.Properties;
 
 namespace Trololo.View
 {
@@ -17,11 +18,9 @@ namespace Trololo.View
         private static Game game;
         private static Timer invincibleTimer; 
         private static Timer cooldownTimer;
-        private bool isMovingLeft = false;
-        private bool isMovingRight = false;
-        private bool isJumping = false;
         private System.Windows.Forms.ProgressBar progressBar;
-        private static  SoundPlayer enemyShootPlayer;
+
+        public static SoundPlayer enemyShootPlayer;
         private static SoundPlayer playerShootPlayer;
         private static SoundPlayer mvpSound; 
 
@@ -29,10 +28,10 @@ namespace Trololo.View
         public GameControl()
         {
             InitializeComponent();
-            progressBar = new System.Windows.Forms.ProgressBar();
+            progressBar = new ProgressBar();
             this.Controls.Add(progressBar);
 
-            timer = new System.Windows.Forms.Timer();
+            timer = new Timer();
             timer.Interval = 10;
             timer.Tick += new EventHandler(Update);
 
@@ -77,6 +76,7 @@ namespace Trololo.View
                 Player.invincibleCooldown = 20000;
             }
         }
+
         private void RunProgressBar()
         {
             progressBar.Minimum = 0;
@@ -85,16 +85,15 @@ namespace Trololo.View
             progressBar.Location = new Point(360, 870);
             progressBar.Size = new Size(180, 60);
         }
+
         private void ActivateInvincibleMode()
         {
             if (!game.player.IsInvincible && Player.invincibleCooldown == 20000)
             {
                 game.player.SetInvins(); 
                 invincibleTimer.Start();
-                game.player.IsShooting = false; 
-                mvpSound.LoadAsync();
-                mvpSound.Play();
-                mvpSound.Dispose();
+                game.player.IsShooting = false;
+                PlayMedia(mvpSound); 
             }
         }
 
@@ -105,7 +104,7 @@ namespace Trololo.View
             DoubleBuffered = true;
             game = Game;
             MouseClick += GameControl_MouseClick;
-            this.KeyUp += Game_Control;
+            this.KeyUp += GameControl_KeyUp;
         }
 
         private void GameControl_MouseClick(object sender, MouseEventArgs e)
@@ -113,16 +112,15 @@ namespace Trololo.View
             if (Player.IsWithGun && game.player.bullets.Count < 3)
             {
                 game.player.IsShooting = true;
-                game.player.bullets.Add(new Bullet(Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\PlayerShoot.png"), game.player.transform.position,game.player.transform.Direction));
-                playerShootPlayer.LoadAsync();
-                playerShootPlayer.Play();
-                playerShootPlayer.Dispose();
+                game.player.bullets.Add(new Bullet(Resources.PlayerShootSprite, game.player.transform.position,game.player.transform.Direction));
+                PlayMedia(playerShootPlayer); 
             }
         }
 
         private void Update(object sender, EventArgs e)
         {
             UpdateCharacterMovement(); 
+
             if (game.player.GetHealth() <= 0)
             {
                 timer.Stop();
@@ -131,89 +129,39 @@ namespace Trololo.View
             }
 
             GravitationWork();
-            var toDeleteEnemies = new Dictionary<EnemySky, EnemyShoot>();
+
+            var toDeleteEnemies = new Dictionary<Enemy, EnemyShoot>();
             var toDeletePlayerShoots = new List<Bullet>();  
+
             if (game.player.transform.position.X + game.player.transform.hitBox.Width>= 1360 && game.enemies.Count == 0)
                 game.LoadStage(true);
+
             if (game.player.IsShooting)
-                UpdatePlayerShots(game.player, game.player.bullets, toDeleteEnemies, toDeletePlayerShoots);
-            UpdateEnemy(game.enemies, toDeleteEnemies, toDeletePlayerShoots);
+                game.player.UpdatePlayerShots(game, game.player.bullets, toDeleteEnemies, toDeletePlayerShoots);
+
+            Enemy.UpdateEnemy(game.enemies, game);
+            DeleteObjects(game.enemies, toDeleteEnemies, toDeletePlayerShoots, game); 
             Invalidate();
         }
 
-        private void UpdatePlayerShots(Player player, List<Bullet> bullets, Dictionary<EnemySky, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots)
+        private static void DeleteObjects(Dictionary<Enemy, EnemyShoot> enemies, Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots, Game game)
         {
-
-            foreach (var bullet in bullets)
-            {
-                bullet.Shoot();
-                if(!HelpMethods.Collide(bullet.transform.hitBox, bullet.transform.position.X, bullet.transform.position.Y, bullet.transform.hitBox.Width, bullet.transform.hitBox.Height, game.level.tiles))
-                {
-                    toDeleteShoots.Add(bullet);
-                    break;
-                }
-                foreach (var value in game.enemies.Keys)
-                {
-
-                    if (bullet.transform.hitBox.IntersectsWith(value.transform.hitBox))
-                    {
-                        value.Hurt();
-                        toDeleteShoots.Add(bullet);
-                        if (value.GetHealth() == 0)
-                            toDeleteEnemies[value] = null;
-                    }
-                }
-            }
-        }
-
-        private static void UpdateEnemy(Dictionary<EnemySky, EnemyShoot> enemies, Dictionary<EnemySky, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots)
-        {
-            foreach(var key in toDeleteEnemies.Keys)
+            foreach (var key in toDeleteEnemies.Keys)
             {
                 enemies.Remove(key);
             }
 
-            foreach(var value in toDeleteShoots)
+            foreach (var value in toDeleteShoots)
                 game.player.bullets.Remove(value);
-            foreach (var enemy in enemies.Keys)
-            {
-                var rnd = new Random().Next(100);
-                var shoot = enemies[enemy];
-                if (rnd == 40 && !enemy.isShooted)
-                {
-                    shoot.transform = new Transform(enemy.transform.position, new RectangleF(enemy.transform.position.X, enemy.transform.position.Y, 120, 120));
-                    enemy.isShooted = true;
-                    shoot.Shoot(game.player.transform.position.X, game.player.transform.position.Y);
-                    enemyShootPlayer.LoadAsync();
-                    enemyShootPlayer.Play();
-                    enemyShootPlayer.Dispose();
-                }
-                if (enemy.isShooted)
-                {
-                    shoot.transform.Move(new PointF(shoot.directionX * shoot.velocity, shoot.directionY * shoot.velocity));
-                    if (game.player.transform.hitBox.IntersectsWith(shoot.transform.hitBox) && !game.player.IsInvincible)
-                    {
-                        game.player.Hurt();
-                        enemy.isShooted = false;
-                    }
-
-                    if (!HelpMethods.Collide(game.player.transform.hitBox, shoot.transform.position.X, shoot.transform.position.Y, 100, 100, game.level.tiles))
-                    {
-                        enemy.isShooted = false;
-                    }
-                }
-                if (!enemy.isLoopEnd)
-                    enemy.Patrol(game.level.tiles);
-                else
-                    enemy.GoGorizontal(game.level.tiles); 
-            }
         }
+
+
 
 
         public void GravitationWork()
         {
             var move = new PointF(game.player.transform.position.X, game.player.transform.position.Y + Player.gravity);
-            if (HelpMethods.Collide(game.player.transform.hitBox, move.X, move.Y, game.player.transform.hitBox.Width, game.player.transform.hitBox.Height, game.level.tiles))
+            if (CollitionsControl.Collide(game.player.transform.hitBox, move.X, move.Y, game.player.transform.hitBox.Width, game.player.transform.hitBox.Height, game.level.tiles))
                 game.player.transform.Move(new PointF(0, Player.gravity));
             else
                 game.player.IsJumping = false;
@@ -222,26 +170,26 @@ namespace Trololo.View
         private void UpdateCharacterMovement()
         {
             var move = new PointF(0, 0);
-            if (isMovingLeft)
+            if (game.player.isMovingLeft)
             {
                 move.X -= game.player.velocity;
                 move.Y += 0;
                 game.player.RotatePlayer(move, game);
             }
-            else if (isMovingRight)
+            else if (game.player.isMovingRight)
             {
                 move.X += game.player.velocity;
                 move.Y += 0;
                 game.player.RotatePlayer(move, game);
             }
 
-            if (isJumping && !game.player.IsJumping)
+            if (game.player.isJumping && !game.player.IsJumping)
             {
                 move.X += 0;
                 move.Y -= game.player.velocity*15;
                 game.player.IsJumping = true;
             }
-            if (HelpMethods.Collide(game.player.transform.hitBox, game.player.transform.position.X + move.X, game.player.transform.position.Y + move.Y, game.player.transform.hitBox.Width, game.player.transform.hitBox.Height, game.level.tiles))
+            if (CollitionsControl.Collide(game.player.transform.hitBox, game.player.transform.position.X + move.X, game.player.transform.position.Y + move.Y, game.player.transform.hitBox.Width, game.player.transform.hitBox.Height, game.level.tiles))
                 game.player.transform.Move(move);
         }
 
@@ -249,25 +197,24 @@ namespace Trololo.View
         {
             if (game.stage == GameStage.Play)
             {
-                GraphicsDraw.DrawLvl(game.level, e);
-                GraphicsDraw.DrawHealth(e, game.player.GetHealth());
-
+                GraphicsMethods.DrawLvl(game.level, e);
+                GraphicsMethods.DrawHealth(e, game.player.GetHealth());
 
                 foreach (var enemy in game.enemies.Keys)
                 {
-                    GraphicsDraw.DrawEnemy(enemy.transform, e, enemy.texture);
+                    GraphicsMethods.DrawEnemy(enemy.transform, e, enemy.texture);
                     if (enemy.isShooted)
                     {
-                        GraphicsDraw.DrawProjectile(game.enemies[enemy].transform, e, game.enemies[enemy].texture);
+                        GraphicsMethods.DrawProjectile(game.enemies[enemy].transform, e, game.enemies[enemy].texture);
                     }
                 }
 
                 foreach (var bullet in game.player.bullets)
                 {
-                    GraphicsDraw.DrawProjectile(bullet.transform, e, bullet.texture);
+                    GraphicsMethods.DrawProjectile(bullet.transform, e, bullet.texture);
                 }
 
-                GraphicsDraw.DrawChar(game.player.transform, e, game);
+                GraphicsMethods.DrawChar(game.player.transform, e, game);
             }
         }
 
@@ -276,12 +223,11 @@ namespace Trololo.View
         {
 
             if (e.KeyCode == Keys.A)
-                isMovingLeft = true;
+                game.player.isMovingLeft = true;
             else if (e.KeyCode == Keys.D)
-                isMovingRight = true;
+                game.player.isMovingRight = true;
             else if (e.KeyCode == Keys.Space)
-                isJumping = true;
-
+                game.player.isJumping = true;
 
             if (e.KeyCode == Keys.Escape)
             {
@@ -293,18 +239,22 @@ namespace Trololo.View
             {
                 ActivateInvincibleMode();
             }
-
         }
 
-        private void Game_Control(object sender, KeyEventArgs e)
+        private void GameControl_KeyUp(object sender, KeyEventArgs e) 
         {
             if (e.KeyCode == Keys.A)
-                isMovingLeft = false;
+                game.player.isMovingLeft = false;
             else if (e.KeyCode == Keys.D)
-                isMovingRight = false;
+                game.player.isMovingRight = false;
             else if (e.KeyCode == Keys.Space)
-                isJumping = false;
+                game.player.isJumping = false;
         }
 
+        public static void PlayMedia(SoundPlayer sound)
+        {
+            sound.Play();
+            sound.Dispose();
+        }
     }
 }

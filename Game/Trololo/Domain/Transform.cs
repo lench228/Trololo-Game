@@ -21,5 +21,10 @@ namespace Trololo.Domain
             hitBox.X += moove.X;
             hitBox.Y += moove.Y;
         }
+
+        public PointF GetPosition()
+        {
+            return this.position;
+        }
     }
 }

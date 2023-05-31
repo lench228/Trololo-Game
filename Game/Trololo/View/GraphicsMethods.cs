@@ -5,9 +5,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using Trololo.Domain;
 using Trololo.View;
-using Levels; 
+using Levels;
+using Trololo.Properties;
 
-internal static class GraphicsDraw
+internal static class GraphicsMethods
 {
         private static Game game;
 
@@ -43,8 +44,8 @@ internal static class GraphicsDraw
 
     public static void DrawHealth(PaintEventArgs e, int health)
     {
-        var emptyHealthTexture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\HealthEmpty.png");
-        var fullHealthTexture = Image.FromFile("C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Source\\HealthFull.png");
+        var emptyHealthTexture = Resources.HealthEmpty;
+        var fullHealthTexture = Resources.HealthFull;
         e.Graphics.DrawImage(emptyHealthTexture, 10, 803, emptyHealthTexture.Width, emptyHealthTexture.Height);
         for (var i = 0; i < health; i++)
             e.Graphics.DrawImage(fullHealthTexture, 55 + i * 100, 855, fullHealthTexture.Width, fullHealthTexture.Height);

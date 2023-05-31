@@ -80,7 +80,7 @@ namespace Trololo.Tests
         {
             var tiles = new Level(level, new Game(), true).tiles; 
        
-            Assert.AreEqual(expected, HelpMethods.Collide(new RectangleF(playerPositionX, playerPositionX,116, 243), playerPositionX, playerPositionY, 116, 243, tiles));
+            Assert.AreEqual(expected, CollitionsControl.Collide(new RectangleF(playerPositionX, playerPositionX,116, 243), playerPositionX, playerPositionY, 116, 243, tiles));
         }
     }
 }

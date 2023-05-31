@@ -43,13 +43,8 @@ namespace Levels
                     switch (lines[y][x])
                     {
                         case 'E':
-                        if (flag)
-                        {
                             tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
                             game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game, flag);
-                        }
-                        else
-                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case '.':
                         tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
@@ -59,6 +54,7 @@ namespace Levels
                         {
                             tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
                             game.CreatePlayer(new Point(lastTile.X, lastTile.Y));
+                            game.playerSpawn = tiles[x, y];
                         }
                         else
                         {
