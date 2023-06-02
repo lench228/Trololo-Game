@@ -10,29 +10,24 @@ using Trololo.Properties;
 
 internal static class GraphicsMethods
 {
-    private static Game game;
     public static void DrawChar(Transform transform, PaintEventArgs e, Player player)
     {
         e.Graphics.DrawImage(player.texture, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.HitBox.X, (int)transform.HitBox.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawEnemy(Transform transform, PaintEventArgs e, Image enemyTexture)
     {
         e.Graphics.DrawImage(enemyTexture, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawProjectile(Transform transform, PaintEventArgs e, Image projectileImage)
     {
         e.Graphics.DrawImage(projectileImage, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawHeal(Transform transform, PaintEventArgs e, Image healImage)
     {
         e.Graphics.DrawImage(healImage, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawLvl(Level level, PaintEventArgs g, Player player)

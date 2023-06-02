@@ -11,8 +11,8 @@ namespace Trololo.Domain
         {
             if (tiles == null)
                 return false;
-            for (var i = x; i <= width + x; i += 1)
-                for (var j = y; j <= height + y; j += 1)
+            for (var i = x; i <= width + x; i += 2)
+                for (var j = y; j <= height + y; j += 2)
                     if (IsBorder(i, j, tiles, hitbox))
                         return false;
             return true;

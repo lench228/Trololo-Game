@@ -8,7 +8,7 @@ namespace Trololo.Domain
 
         private int health;
         public float velocity { get; set; }
-        public readonly float gravity = (float)5;
+        public readonly float gravity = (float)3.4;
 
         public Image texture = null;
   

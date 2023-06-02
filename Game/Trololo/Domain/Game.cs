@@ -35,7 +35,7 @@ namespace Trololo.Domain
 
         public Game() 
         {
-            currentLevel = 10;
+            currentLevel = 0;
             stage = GameStage.NotStarted;
             if(stage == GameStage.Play)
                 LoadStage(false);  

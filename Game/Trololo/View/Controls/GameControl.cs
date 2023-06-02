@@ -122,7 +122,6 @@ namespace Trololo.View
                 game.Death();
                 return; 
             }
-
             GravitationWork();
 
             var toDeleteEnemies = new Dictionary<Enemy, EnemyShoot>();
@@ -136,21 +135,17 @@ namespace Trololo.View
 
             foreach (var enemy in game.enemies.Keys)
                 enemy.UpdateEnemy(game.enemies, game, player);
-            DeleteObjects(toDeleteEnemies,toDeletePlayerShoots, toDeleteHeals, game, player);
+            DeleteObjects(toDeleteEnemies, toDeleteHeals, game, player);
             Invalidate();
         }
 
-        private static void DeleteObjects(Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots, List<Heal> heals ,Game game, Player player)
+        private static void DeleteObjects(Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Heal> heals ,Game game, Player player)
         {
-
-            foreach (var value in toDeleteShoots)
-                player.bullets.Remove(value);
-
             foreach(var heal in heals)
                 game.heals.Remove(heal);
 
             foreach(var value in toDeleteEnemies.Keys)
-                game.enemies.Remove(value);
+                 game.enemies.Remove(value);
         }
 
         public void GravitationWork()
