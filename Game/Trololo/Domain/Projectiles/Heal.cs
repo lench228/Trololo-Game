@@ -11,6 +11,7 @@ namespace Trololo.Domain.Projectiles
     {
         public Heal(Image projectTexture, PointF position) : base(projectTexture, position)
         {
+            Transform.HitBox = new RectangleF(position, new Size(50, 60));
         }
     }
 }

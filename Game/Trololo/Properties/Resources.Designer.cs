@@ -73,6 +73,16 @@ namespace Trololo.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Begin {
+            get {
+                object obj = ResourceManager.GetObject("Begin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blockTexture {
             get {
                 object obj = ResourceManager.GetObject("blockTexture", resourceCulture);
@@ -152,6 +162,16 @@ namespace Trololo.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Exit {
+            get {
+                object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gun {
             get {
                 object obj = ResourceManager.GetObject("gun", resourceCulture);
@@ -219,9 +239,9 @@ namespace Trololo.Properties {
         ///......................X
         ///......................X
         ///......................X
+        ///......................X
+        ///......................X
         ///..P...................X
-        ///......................X
-        ///......................X
         ///......................X
         ///......................X
         ///FFFFFFFFFFFFFFFFFFFFFFF
@@ -245,10 +265,10 @@ namespace Trololo.Properties {
         ///......................X
         ///......................X
         ///.............S........X
-        ///..P...................X
         ///......................X
         ///......................X
-        ///........FFFFFFFFFF....X
+        ///..P........FFFFF......X
+        ///.........FFFFFFFF.....X
         ///........FFFFFFFFFF....X
         ///FFFFFFFFFFFFFFFFFFFFFFF
         ///FFFFFFFFFFFFFFFFFFFFFFF
@@ -270,9 +290,9 @@ namespace Trololo.Properties {
         ///......................X
         ///......................X
         ///......................X
+        ///......................X
+        ///......................X
         ///..P...................X
-        ///......................X
-        ///......................X
         ///......................X
         ///......................X
         ///FFFFFFFFFFFFFFFFFFFFFFF
@@ -293,11 +313,11 @@ namespace Trololo.Properties {
         ///.....................XX
         ///E....................XX
         ///.....................XX
-        ///..........G....E.....XX
+        ///..........G..........XX
+        ///.....................XX
+        ///.....................XX
         ///.....................XX
         ///..P..................XX
-        ///.....................XX
-        ///.....................XX
         ///.....................XX
         ///.....................XX
         ///FFFFFFFFFFFFFFFFFFFFFFF
@@ -312,14 +332,14 @@ namespace Trololo.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .....................XX
-        ///.....................XX
-        ///.....................XX
-        ///.....................XX
-        ///.....................XX
-        ///.....................XX
-        ///.....................XX
-        ///.....................XX
+        ///   Ищет локализованную строку, похожую на .....................FF
+        ///.....................FF
+        ///.....................FF
+        ///.....................FF
+        ///.....................FF
+        ///.....................FF
+        ///.................FFFFFF
+        ///.....................FF
         ///.....................XX
         ///..P..................XX
         ///.....................XX
@@ -345,15 +365,15 @@ namespace Trololo.Properties {
         ///......................F
         ///......................F
         ///.P....................F
-        ///...............FFF....F
-        ///................FF....F
-        ///........FFFF.....F....X
-        ///.................F....X
-        ///FFFFFF...........F....X
-        ///FFFFFF...........F....X
-        ///FFFFFF...........F....X
+        ///.............#FFFF....F
+        ///.............#..FF....F
+        ///.....F..FF...#..FF....X
+        ///....FF.......#..FF....X
+        ///FFFFFF..........FF....X
+        ///FFFFFF..........FF....X
+        ///FFFFFF..........FF....X
         ///FFFFFF.........FFFFFFFF
-        ///FFF.FF.........FFFFFFFF
+        ///FFF.FFFFFFFFFFFFFFFFFFF
         ///
         ///.
         /// </summary>
@@ -386,6 +406,16 @@ namespace Trololo.Properties {
         internal static string level7 {
             get {
                 return ResourceManager.GetString("level7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LevelRestart {
+            get {
+                object obj = ResourceManager.GetObject("LevelRestart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

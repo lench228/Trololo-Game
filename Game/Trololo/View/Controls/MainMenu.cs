@@ -1,6 +1,7 @@
 ﻿using System.Drawing; 
 using System.Windows.Forms;
-using Trololo.Domain; 
+using Trololo.Domain;
+using Trololo.Properties;
 
 namespace Trololo.View
 {
@@ -20,13 +21,23 @@ namespace Trololo.View
         public void Run(Game game)
         {
             this.game = game;
-            var start = new Label
+            var start = new PictureBox()
             {
-                Text = "НАЧАТЬ",
+                Image = Resources.Begin,
+                Size = Resources.Begin.Size,
+                BackColor = Color.Transparent,
                 Location = new Point(200, 500)
             };
-            Controls.Add(start);
+            var exit = new PictureBox()
+            {
+                Image = Resources.Exit,
+                Size = Resources.Exit.Size,
 
+                BackColor = Color.Transparent,
+                Location = new Point(200, 700)
+            };
+            Controls.Add(start);
+            Controls.Add(exit);
             start.MouseClick += Start_MouseClick;
         }
     }

@@ -8,18 +8,39 @@ using System.Linq;
 using System.Windows.Forms;
 using Trololo.Properties;
 using System;
+using System.Linq.Expressions;
 
 namespace Trololo.Domain
 {
-    public class Player : Entity
+    public class PlayerStates 
     {
-        public static bool IsWithGun { get; set; }
+        public PlayerStates() 
+        { 
+            isMoovingDown= false;
+            isMoovingUp= false;
+            isMovingLeft= false;
+            isMovingRight= false;
+            IsWithGun= false;
+            IsShooting = false;
+            IsInFly = true;
+            isOnLadder = false;
+            IsInvincible= false;
+        }
+
+        public bool isMovingLeft { get; set; }
+        public bool isMovingRight { get; set; }
+        public bool isJumping { get; set; }
+        public bool isMoovingUp { get; set; }
+        public bool isMoovingDown { get; set; }
+        public bool IsWithGun { get; set; }
         public bool IsShooting { get; set; }
         public bool IsInFly { get; set; }
-
         public bool isOnLadder { get; set; }
-        public bool IsInvincible; 
-
+        public bool IsInvincible { get; set; }
+    }
+    public class Player : Entity
+    {
+        public PlayerStates States; 
         public List<Bullet> bullets;
 
         public static double invincibleTime = 5000;
@@ -28,16 +49,12 @@ namespace Trololo.Domain
         public Image textureRight; 
         public Image textureLeft;
 
-        public bool isMovingLeft { get; set; }
-        public bool isMovingRight { get; set; }
-        public bool isJumping { get; set; }
-        public bool isMoovingUp { get; set; }
-        public bool isMoovingDown { get; set; }
-
 
         public Player(int HealthCount)
         {
             SetHealth(HealthCount);
+
+            States = new PlayerStates();
 
             this.textureRight = Resources.testPlayer;
             this.textureLeft = Resources.testPlayerRotated;
@@ -46,36 +63,36 @@ namespace Trololo.Domain
 
             velocity = (float)10;
             if(Game.currentLevel > 2)
-                IsWithGun = true; 
+                States.IsWithGun = true; 
             bullets = new List<Bullet>();
-            IsInvincible = false;
+            States.IsInvincible = false;
         }
 
         public void SetInvins()
         {
             this.textureRight = Resources.InvinsiblePlayer;
             this.textureLeft =Resources.RotatedInvinsiblePlayer;
-            IsInvincible = true; 
+            States.IsInvincible = true; 
         }
 
         public void UnsetInvins()
         {
             this.textureRight = Resources.testPlayer;
             this.textureLeft = Resources.testPlayerRotated;
-            IsInvincible = false;
+            States.IsInvincible = false;
         }
 
         public void RotatePlayer(PointF move, Game game)
         {
             if (move.X > 0)
             {
-                transform.Direction = 1;
+                Transform.Direction = 1;
                 texture = textureRight; 
 
             }
             else if (move.X < 0)
             {
-                transform.Direction = -1;
+                Transform.Direction = -1;
                 texture = textureLeft; 
             }
         }
@@ -87,15 +104,13 @@ namespace Trololo.Domain
             {
                 var bullet = bullets[i];
 
-                bullet.Shoot();
+                bullets[i].Shoot();
 
                 if (!CollitionsControl.Collide(bullet.Transform.HitBox, bullet.Transform.Position.X, bullet.Transform.Position.Y, bullet.Transform.HitBox.Width, bullet.Transform.HitBox.Height, game.level.tiles))
                 {
-                    toDeleteShoots.Add(bullet);
                     bullets.RemoveAt(i);
                     continue;
                 }
-
                 CheckEnemies(game, bullets, toDeleteEnemies, toDeleteShoots, i, bullet);
             }
         }
@@ -104,7 +119,7 @@ namespace Trololo.Domain
         {
             foreach (var value in game.enemies.Keys)
             {
-                if (bullet.Transform.HitBox.IntersectsWith(value.transform.HitBox))
+                if (bullet.Transform.HitBox.IntersectsWith(value.Transform.HitBox))
                 {
                     value.Hurt();
                     toDeleteShoots.Add(bullet);
@@ -114,7 +129,7 @@ namespace Trololo.Domain
                     {
                         toDeleteEnemies[value] = null;
                         if (value.IsDropHeal())
-                            game.CreateHeal(value.transform.Position);
+                            game.CreateHeal(value.Transform.Position);
                     }
                     break;
                 }

@@ -245,6 +245,15 @@
   <ItemGroup>
     <None Include="View\Images\Ladder.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\LevelRestart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Begin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Exit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

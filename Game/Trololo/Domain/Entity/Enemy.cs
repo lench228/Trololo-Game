@@ -18,78 +18,78 @@ namespace Trololo.Domain
         public bool isLoopEnd = false;
         public bool isShooted;
 
-        public Enemy(int Type)
+        public Enemy()
         {
             this.SetHealth(3);
             this.texture = Resources.enemySky;
-            this.velocity = (float)5;
-            var rnd = new Random().Next(100);
-            enemyType = rnd < 10 ? 0 : 1;
+            this.velocity = (float)3;
+            var rnd = new Random().Next(50);
+            enemyType = rnd < 20 ? 0 : 1;
             isShooted = false;
-            transform.Direction = 1; 
+            Transform.Direction = 1; 
         }
 
         public void UpdateEnemy(Dictionary<Enemy, EnemyShoot> enemies, Game game, Player player)
         {
-                var playerPosition = player.transform.Position;
-                var playerHitbox = player.transform.HitBox;
+                var playerPosition = player.Transform.Position;
+                var playerHitbox = player.Transform.HitBox;
                 var rnd = new Random().Next(100);
                 var shoot = enemies[this];
 
-                if (rnd == 40 && !this.isShooted)
+                if (rnd == 40 && !isShooted)
                 {
                     GameControl.PlayMedia(GameControl.enemyShootPlayer);
-                    shoot.Transform = new Transform(this.transform.Position, new RectangleF(this.transform.Position.X, this.transform.Position.Y, 100, 100));
+                    shoot.Transform = new Transform(Transform.Position, new RectangleF(Transform.Position.X, Transform.Position.Y, 69, 69));
                     this.isShooted = true;
                     shoot.SetShootDirection(playerPosition.X, playerPosition.Y);
                 }
-                if (this.isShooted)
+                if (isShooted)
                 {
                     var direction = shoot.GetDirection();
                     shoot.Transform.Move(new PointF(direction.X * shoot.velocity, direction.Y * shoot.velocity));
 
-                    if (playerHitbox.IntersectsWith(shoot.Transform.HitBox) && !player.IsInvincible)
+                    if (playerHitbox.IntersectsWith(shoot.Transform.HitBox) && !player.States.IsInvincible)
                     {
                         player.Hurt();
-                        this.isShooted = false;
+                        isShooted = false;
                     }
                     if (!CollitionsControl.Collide(playerHitbox, shoot.Transform.Position.X, shoot.Transform.Position.Y, 100, 100, game.level.tiles))
-                        this.isShooted = false;
+                        isShooted = false;
                 }
-                if (!this.isLoopEnd)
-                    this.Patrol(game.level.tiles);
+                if (!isLoopEnd)
+                    Patrol(game.level.tiles);
                 else
-                    this.GoGorizontal(game.level.tiles);
+                    GoGorizontal(game.level.tiles);
             
         }
 
         private void Patrol(Tile[,] tiles)
         {
-            var move = new PointF(transform.Direction * velocity * 2, 0);
-            if (CollitionsControl.Collide(this.transform.HitBox, move.X + transform.Position.X, move.Y + transform.Position.Y, this.transform.HitBox.Width, this.transform.HitBox.Height, tiles))
+            var move = new PointF(Transform.Direction * velocity * 2, 0);
+            if (CollitionsControl.Collide(Transform.HitBox, move.X + Transform.Position.X, move.Y + Transform.Position.Y, Transform.HitBox.Width, Transform.HitBox.Height, tiles))
             {
-                transform.Move(move);
+                Transform.Move(move);
             }
             else
             {
-                transform.Direction = -transform.Direction;
+                Transform.Direction = -Transform.Direction;
                 counter++;
             }
             if (counter == 2)
             {
-                transform.Direction = 1;
+                Transform.Direction = 1;
                 isLoopEnd = true;
             }
         }
 
         private void GoGorizontal(Tile[,] tiles)
         {
-            if (CollitionsControl.Collide(this.transform.HitBox, transform.Position.X, this.transform.Position.Y + 10 * transform.Direction, this.transform.HitBox.Width, this.transform.HitBox.Height, tiles))
+            if (CollitionsControl.Collide(Transform.HitBox, Transform.Position.X, Transform.Position.Y + 10 * Transform.Direction, Transform.HitBox.Width, Transform.HitBox.Height, tiles))
 
-                transform.Move(new PointF(0, 6 * transform.Direction));
+            Transform.Move(new PointF(0, 6 * Transform.Direction));
             else
             {
-                transform.Direction = -transform.Direction;
+                Transform.Direction = -Transform.Direction;
             }
         }
 
@@ -98,5 +98,4 @@ namespace Trololo.Domain
             return enemyType == 0 ? true : false;  
         }
     }
-
 }

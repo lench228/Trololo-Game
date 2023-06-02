@@ -8,10 +8,10 @@
 ......................X
 ......................X
 .............S........X
-..P...................X
 ......................X
 ......................X
-........FFFFFFFFFF....X
+..P........FFFFF......X
+.........FFFFFFFF.....X
 ........FFFFFFFFFF....X
 FFFFFFFFFFFFFFFFFFFFFFF
 FFFFFFFFFFFFFFFFFFFFFFF

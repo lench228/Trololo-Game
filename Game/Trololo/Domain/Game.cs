@@ -16,16 +16,15 @@ namespace Trololo.Domain
         private Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
-        public Tile playerSpawn; 
 
         public Dictionary<Enemy, EnemyShoot> enemies = new Dictionary<Enemy, EnemyShoot>();
         public List<Heal> heals= new List<Heal>();
 
         public Player GetPlayer() => player;
-        public void CreateEnemy(Point location, int type, Game game)
+        public void CreateEnemy(Point location)
         {
-            var enemy = new Enemy(type);
-            enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.transform.Position, player);
+            var enemy = new Enemy();
+            enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.Transform.Position, player);
             enemy.SetTransform(location);
         }
 
@@ -36,7 +35,7 @@ namespace Trololo.Domain
 
         public Game() 
         {
-            currentLevel = 0;
+            currentLevel = 10;
             stage = GameStage.NotStarted;
             if(stage == GameStage.Play)
                 LoadStage(false);  
@@ -63,7 +62,7 @@ namespace Trololo.Domain
         {
             player.SetHealth(3);
             currentLevel = 0;
-            player.IsShooting = false;
+            player.States.IsShooting = false;
             enemies = new Dictionary<Enemy, EnemyShoot>(); 
             ChangeStage(GameStage.Menu); 
         }
@@ -74,10 +73,10 @@ namespace Trololo.Domain
             enemies = new Dictionary<Enemy, EnemyShoot>();
             LoadStage(false);
 
-            player.transform.Position = playerSpawn.transform.Position;
-            var tempRect = player.transform.HitBox; 
-            tempRect.Location = playerSpawn.transform.Position;
-            player.transform.HitBox = tempRect;
+            player.Transform.Position = level.PlayerSpawn.transform.Position;
+            var tempRect = player.Transform.HitBox; 
+            tempRect.Location = level.PlayerSpawn.transform.Position;
+            player.Transform.HitBox = tempRect;
 
             this.ChangeStage(GameStage.Play); 
         }
@@ -86,7 +85,6 @@ namespace Trololo.Domain
         {
             this.ChangeStage(GameStage.End);
         }
-
 
         private void ChangeStage(GameStage stage)
         {
@@ -106,7 +104,7 @@ namespace Trololo.Domain
         public void LoadStage(bool isNextToLoad)
         {
 
-            if (currentLevel < 10 && isNextToLoad)
+            if (currentLevel < 15 && isNextToLoad)
                 currentLevel += 1;
             if (stage == GameStage.Pause && stage == GameStage.End)
             {
@@ -118,7 +116,7 @@ namespace Trololo.Domain
 
         public static void GunIsPicked()
         {
-            Player.IsWithGun= true;
+            //player.States.IsWithGun= true;
         }
     }
 }

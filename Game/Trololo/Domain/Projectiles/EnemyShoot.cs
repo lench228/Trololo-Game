@@ -17,7 +17,7 @@ namespace Trololo.Domain
       
         public EnemyShoot(Image projectTexture, PointF position, Player player) : base(projectTexture, position) 
         {
-            playerPos = player.transform.Position;
+            playerPos = player.Transform.Position;
             this.velocity = 5;
         }
         public void SetShootDirection(float playerX, float playerY)

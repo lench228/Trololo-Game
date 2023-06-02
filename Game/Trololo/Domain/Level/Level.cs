@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 
 using Trololo.Domain;
@@ -9,7 +10,10 @@ namespace Levels
     public class Level
     {
         public readonly Tile[,] tiles;
-        public readonly List<LadderTile> ladders = new List<LadderTile>(); 
+        public readonly List<LadderTile> Ladders = new List<LadderTile>(); 
+        public readonly List<ExitTile> ExitTiles = new List<ExitTile>();
+        public Tile PlayerSpawn;
+        public GunTile GunTile; 
         public Level(string text, Game game, bool flag)
         {
             if (String.IsNullOrEmpty(text))
@@ -44,38 +48,36 @@ namespace Levels
                     {
                         case 'E':
                             tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
-                            game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game);
+                            game.CreateEnemy(new Point(lastTile.X, lastTile.Y));
                         break;
                         case '.':
                         tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case 'P':
-                        if (flag)
-                        {
                             tiles[x, y] = new PlayerSpawn(new Point(lastTile.X, lastTile.Y));
                             game.CreatePlayer(new Point(lastTile.X, lastTile.Y));
-                            game.playerSpawn = tiles[x, y];
-                        }
-                        else
-                        {
-                            tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
-                        }
+                        PlayerSpawn = tiles[x, y];
+    
+
                         break;
                         case 'F':
                         tiles[x, y] = new FloorTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case 'X':
                         tiles[x, y] = new ExitTile(new Point(lastTile.X, lastTile.Y));
+                        ExitTiles.Add(tiles[x, y] as ExitTile);
                         break;
                         case 'G':
                         tiles[x, y] = new GuideTile(new Point(lastTile.X, lastTile.Y));
                         break;
                         case 'S':
                         tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
+                        GunTile = tiles[x, y] as GunTile; 
+                        
                         break;
                         case '#':
                         tiles[x, y] = new LadderTile(new Point(lastTile.X, lastTile.Y));
-                        ladders.Add(tiles[x, y] as LadderTile);
+                        Ladders.Add(tiles[x, y] as LadderTile);
                         break;
                         default:
                         return null; 

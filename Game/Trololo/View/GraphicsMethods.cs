@@ -35,13 +35,13 @@ internal static class GraphicsMethods
         e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
-    public static void DrawLvl(Level level, PaintEventArgs g)
+    public static void DrawLvl(Level level, PaintEventArgs g, Player player)
     {
         foreach (var tile in level.tiles)
         {
             if (tile.texture != null)
             {
-                if (tile is GunTile && Player.IsWithGun)
+                if (tile is GunTile && player.States.IsWithGun) 
                     continue;
                 g.Graphics.DrawImage(tile.texture, tile.transform.Position.X, tile.transform.Position.Y, tile.transform.HitBox.Width, tile.transform.HitBox.Height);
             }

@@ -5,13 +5,13 @@ FFFFFFFFFFFFFFFFFFFFFFF
 ......................F
 ......................F
 .P....................F
-...............FFF....F
-................FF....F
-........FFFF.....F....X
-.................F....X
-FFFFFF...........F....X
-FFFFFF...........F....X
-FFFFFF...........F....X
+.............#FFFF....F
+.............#..FF....F
+.....F..FF...#..FF....X
+....FF.......#..FF....X
+FFFFFF..........FF....X
+FFFFFF..........FF....X
+FFFFFF..........FF....X
 FFFFFF.........FFFFFFFF
-FFF.FF.........FFFFFFFF
+FFF.FFFFFFFFFFFFFFFFFFF
 
