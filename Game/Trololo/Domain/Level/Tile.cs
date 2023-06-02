@@ -5,15 +5,14 @@
 
     public class Tile
     {
-        public Transform transform; 
-        public Image texture;
-        public bool IsBorder;
-        public bool IsGunTile; 
-        public string Name;
+        public Transform transform { get; set; }
+        public Image texture { get; set; }
+        public bool IsBorder { get; set; }
+
 
         public bool Equals(Tile obj)
         {
-            return transform.position.X == obj.transform.position.X && transform.position.Y == obj.transform.position.Y;
+            return transform.Position.X == obj.transform.Position.X && transform.Position.Y == obj.transform.Position.Y;
         }
     }
 }

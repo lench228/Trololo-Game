@@ -10,36 +10,42 @@ using Trololo.Properties;
 
 internal static class GraphicsMethods
 {
-        private static Game game;
-
-    public static void DrawChar(Transform transform, PaintEventArgs e, Game game)
+    private static Game game;
+    public static void DrawChar(Transform transform, PaintEventArgs e, Player player)
     {
-        e.Graphics.DrawImage(game.player.texture, transform.position.X, transform.position.Y, transform.hitBox.Width, transform.hitBox.Height);
-
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.hitBox.X, (int)transform.hitBox.Y, (int)transform.hitBox.Width, (int)transform.hitBox.Height));
+        e.Graphics.DrawImage(player.texture, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
+        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.HitBox.X, (int)transform.HitBox.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawEnemy(Transform transform, PaintEventArgs e, Image enemyTexture)
     {
-        e.Graphics.DrawImage(enemyTexture, transform.position.X, transform.position.Y, transform.hitBox.Width, transform.hitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.position.X, (int)transform.position.Y, (int)transform.hitBox.Width, (int)transform.hitBox.Height));
+        e.Graphics.DrawImage(enemyTexture, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
+        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawProjectile(Transform transform, PaintEventArgs e, Image projectileImage)
     {
-        e.Graphics.DrawImage(projectileImage, transform.position.X, transform.position.Y, transform.hitBox.Width, transform.hitBox.Height);
-        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.position.X, (int)transform.position.Y, (int)transform.hitBox.Width, (int)transform.hitBox.Height));
+        e.Graphics.DrawImage(projectileImage, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
+        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
+    }
+
+    public static void DrawHeal(Transform transform, PaintEventArgs e, Image healImage)
+    {
+        e.Graphics.DrawImage(healImage, transform.Position.X, transform.Position.Y, transform.HitBox.Width, transform.HitBox.Height);
+        e.Graphics.DrawRectangle(new Pen(Color.Red), new Rectangle((int)transform.Position.X, (int)transform.Position.Y, (int)transform.HitBox.Width, (int)transform.HitBox.Height));
     }
 
     public static void DrawLvl(Level level, PaintEventArgs g)
     {
         foreach (var tile in level.tiles)
+        {
             if (tile.texture != null)
             {
-                if (tile.IsGunTile && Player.IsWithGun)
+                if (tile is GunTile && Player.IsWithGun)
                     continue;
-                g.Graphics.DrawImage(tile.texture, tile.transform.position.X, tile.transform.position.Y, tile.transform.hitBox.Width, tile.transform.hitBox.Height);
+                g.Graphics.DrawImage(tile.texture, tile.transform.Position.X, tile.transform.Position.Y, tile.transform.HitBox.Width, tile.transform.HitBox.Height);
             }
+        }
     }
 
     public static void DrawHealth(PaintEventArgs e, int health)
@@ -48,6 +54,8 @@ internal static class GraphicsMethods
         var fullHealthTexture = Resources.HealthFull;
         e.Graphics.DrawImage(emptyHealthTexture, 10, 803, emptyHealthTexture.Width, emptyHealthTexture.Height);
         for (var i = 0; i < health; i++)
+        {
             e.Graphics.DrawImage(fullHealthTexture, 55 + i * 100, 855, fullHealthTexture.Width, fullHealthTexture.Height);
+        }
     }
 }

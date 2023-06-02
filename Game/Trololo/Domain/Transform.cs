@@ -1,30 +1,41 @@
 ﻿using System.Drawing;
+using System.Xml.Serialization;
 
 namespace Trololo.Domain
 {
     public class Transform
     {
-        public PointF position;
-        public RectangleF hitBox;
-        public int Direction = 1; 
+        private PointF _position;
+        public PointF Position
+        {
+            get { return _position; }
+            set { _position = value; }
+        }
+
+        private RectangleF _hitBox;
+        public RectangleF HitBox
+        {
+            get { return _hitBox; }
+            set { _hitBox = value; }
+        }
+
+        private int _direction;
+        public int Direction
+        {
+            get { return _direction; }
+            set { _direction = value; }
+        }
 
         public Transform(PointF position, RectangleF box)
         {
-            this.position = position;
-            hitBox = box;
+            Position = position;
+            HitBox = box;
         }
 
-        public void Move(PointF moove)
+        public void Move(PointF move)
         {
-            this.position.X += moove.X;
-            this.position.Y += moove.Y;
-            hitBox.X += moove.X;
-            hitBox.Y += moove.Y;
-        }
-
-        public PointF GetPosition()
-        {
-            return this.position;
+            Position = new PointF(Position.X + move.X, Position.Y + move.Y);
+            HitBox = new RectangleF(HitBox.X + move.X, HitBox.Y + move.Y, HitBox.Width, HitBox.Height);
         }
     }
 }

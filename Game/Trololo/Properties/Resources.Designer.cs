@@ -162,6 +162,16 @@ namespace Trololo.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Heal {
+            get {
+                object obj = ResourceManager.GetObject("Heal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HealthEmpty {
             get {
                 object obj = ResourceManager.GetObject("HealthEmpty", resourceCulture);
@@ -185,6 +195,16 @@ namespace Trololo.Properties {
         internal static System.Drawing.Bitmap InvinsiblePlayer {
             get {
                 object obj = ResourceManager.GetObject("InvinsiblePlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ladder {
+            get {
+                object obj = ResourceManager.GetObject("Ladder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

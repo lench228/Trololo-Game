@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using Levels;
+using Trololo.Domain.Projectiles;
 using Trololo.Properties;
 
 namespace Trololo.Domain
@@ -12,18 +13,25 @@ namespace Trololo.Domain
     {
         public GameStage stage = GameStage.NotStarted;
         public Level level;
-        public Player player;
+        private Player player;
         public static int currentLevel;
         public event Action<GameStage> StageChanged;
         public Tile playerSpawn; 
-        
-        public Dictionary<Enemy, EnemyShoot> enemies = new Dictionary<Enemy, EnemyShoot>();
 
-        public void CreateEnemy(Point x, int type, Game game, bool flag)
+        public Dictionary<Enemy, EnemyShoot> enemies = new Dictionary<Enemy, EnemyShoot>();
+        public List<Heal> heals= new List<Heal>();
+
+        public Player GetPlayer() => player;
+        public void CreateEnemy(Point location, int type, Game game)
         {
             var enemy = new Enemy(type);
-            enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.transform.position, game.player);
-            enemy.SetTransform(x);
+            enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.transform.Position, player);
+            enemy.SetTransform(location);
+        }
+
+        public void CreateHeal(PointF location)
+        {
+            heals.Add(new Projectiles.Heal(Resources.Heal, location));
         }
 
         public Game() 
@@ -55,7 +63,6 @@ namespace Trololo.Domain
         {
             player.SetHealth(3);
             currentLevel = 0;
-            
             player.IsShooting = false;
             enemies = new Dictionary<Enemy, EnemyShoot>(); 
             ChangeStage(GameStage.Menu); 
@@ -66,8 +73,12 @@ namespace Trololo.Domain
             player.SetHealth(3);
             enemies = new Dictionary<Enemy, EnemyShoot>();
             LoadStage(false);
-            player.transform.position = playerSpawn.transform.position;
-            player.transform.hitBox.Location= playerSpawn.transform.position;
+
+            player.transform.Position = playerSpawn.transform.Position;
+            var tempRect = player.transform.HitBox; 
+            tempRect.Location = playerSpawn.transform.Position;
+            player.transform.HitBox = tempRect;
+
             this.ChangeStage(GameStage.Play); 
         }
 
@@ -97,8 +108,11 @@ namespace Trololo.Domain
 
             if (currentLevel < 10 && isNextToLoad)
                 currentLevel += 1;
-            if(stage == GameStage.Pause && stage == GameStage.End)
+            if (stage == GameStage.Pause && stage == GameStage.End)
+            {
                 enemies = new Dictionary<Enemy, EnemyShoot>();
+            }
+            heals = new List<Heal>();
             level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this, isNextToLoad);
         }
 
@@ -106,6 +120,5 @@ namespace Trololo.Domain
         {
             Player.IsWithGun= true;
         }
-
     }
 }

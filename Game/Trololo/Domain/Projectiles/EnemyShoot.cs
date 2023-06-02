@@ -17,13 +17,13 @@ namespace Trololo.Domain
       
         public EnemyShoot(Image projectTexture, PointF position, Player player) : base(projectTexture, position) 
         {
-            playerPos = player.transform.position;
+            playerPos = player.transform.Position;
             this.velocity = 5;
         }
         public void SetShootDirection(float playerX, float playerY)
         {
-            directionX = playerX - transform.position.X;
-            directionY = playerY - transform.position.Y;
+            directionX = playerX - Transform.Position.X;
+            directionY = playerY - Transform.Position.Y;
 
             var length = (float)Math.Sqrt(directionX * directionX + directionY * directionY);
             directionX /= length;

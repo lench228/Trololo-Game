@@ -61,6 +61,7 @@
     <Compile Include="Domain\Game.cs" />
     <Compile Include="Domain\Level\Level.cs" />
     <Compile Include="Domain\Entity\Player.cs" />
+    <Compile Include="Domain\Projectiles\Heal.cs" />
     <Compile Include="Domain\Projectiles\EnemyShoot.cs" />
     <Compile Include="Domain\Projectiles\Projectile.cs" />
     <Compile Include="Domain\Level\Tiles.cs" />
@@ -136,7 +137,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="View\Images\Heal.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Domain\Levels\level1.txt" />
   </ItemGroup>
@@ -238,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="View\Images\ToMenuButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\Ladder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

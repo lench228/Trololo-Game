@@ -7,13 +7,10 @@ namespace Trololo.Domain
 {
     public class CollitionsControl
     {
-
-
         public static bool Collide(RectangleF hitbox, float x, float y, float width, float height, Tile[,] tiles)
         {
             if (tiles == null)
                 return false;
-
             for (var i = x; i <= width + x; i += 1)
                 for (var j = y; j <= height + y; j += 1)
                     if (IsBorder(i, j, tiles, hitbox))
@@ -32,11 +29,9 @@ namespace Trololo.Domain
 
             if(value.IsBorder)
                 return true;
-            if (value.IsGunTile)
+            if (value is GunTile)
                 Game.GunIsPicked(); 
             return false;
         }
     }
-
-
 }

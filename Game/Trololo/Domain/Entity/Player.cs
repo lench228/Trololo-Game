@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Trololo.Properties;
+using System;
 
 namespace Trololo.Domain
 {
@@ -14,8 +15,9 @@ namespace Trololo.Domain
     {
         public static bool IsWithGun { get; set; }
         public bool IsShooting { get; set; }
-        public bool IsJumping { get; set; }
+        public bool IsInFly { get; set; }
 
+        public bool isOnLadder { get; set; }
         public bool IsInvincible; 
 
         public List<Bullet> bullets;
@@ -29,6 +31,9 @@ namespace Trololo.Domain
         public bool isMovingLeft { get; set; }
         public bool isMovingRight { get; set; }
         public bool isJumping { get; set; }
+        public bool isMoovingUp { get; set; }
+        public bool isMoovingDown { get; set; }
+
 
         public Player(int HealthCount)
         {
@@ -57,6 +62,7 @@ namespace Trololo.Domain
         {
             this.textureRight = Resources.testPlayer;
             this.textureLeft = Resources.testPlayerRotated;
+            IsInvincible = false;
         }
 
         public void RotatePlayer(PointF move, Game game)
@@ -77,24 +83,40 @@ namespace Trololo.Domain
 
         public void UpdatePlayerShots(Game game, List<Bullet> bullets, Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots)
         {
-            foreach (var bullet in bullets)
+            for (int i = bullets.Count - 1; i >= 0; i--)
             {
+                var bullet = bullets[i];
+
                 bullet.Shoot();
-                if (!CollitionsControl.Collide(bullet.transform.hitBox, bullet.transform.position.X, bullet.transform.position.Y, bullet.transform.hitBox.Width, bullet.transform.hitBox.Height, game.level.tiles))
+
+                if (!CollitionsControl.Collide(bullet.Transform.HitBox, bullet.Transform.Position.X, bullet.Transform.Position.Y, bullet.Transform.HitBox.Width, bullet.Transform.HitBox.Height, game.level.tiles))
                 {
                     toDeleteShoots.Add(bullet);
-                    break;
+                    bullets.RemoveAt(i);
+                    continue;
                 }
-                foreach (var value in game.enemies.Keys)
-                {
 
-                    if (bullet.transform.hitBox.IntersectsWith(value.transform.hitBox))
+                CheckEnemies(game, bullets, toDeleteEnemies, toDeleteShoots, i, bullet);
+            }
+        }
+
+        private static void CheckEnemies(Game game, List<Bullet> bullets, Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots, int i, Bullet bullet)
+        {
+            foreach (var value in game.enemies.Keys)
+            {
+                if (bullet.Transform.HitBox.IntersectsWith(value.transform.HitBox))
+                {
+                    value.Hurt();
+                    toDeleteShoots.Add(bullet);
+                    bullets.RemoveAt(i);
+
+                    if (value.GetHealth() == 0)
                     {
-                        value.Hurt();
-                        toDeleteShoots.Add(bullet);
-                        if (value.GetHealth() == 0)
-                            toDeleteEnemies[value] = null;
+                        toDeleteEnemies[value] = null;
+                        if (value.IsDropHeal())
+                            game.CreateHeal(value.transform.Position);
                     }
+                    break;
                 }
             }
         }

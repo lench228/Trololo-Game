@@ -23,11 +23,11 @@ namespace Trololo.Tests
             var a = new Transform(new PointF(x, y), new RectangleF(x, y, sizeX, sizeY));
             a.Move(new PointF(moveX, moveY));
 
-            Assert.AreEqual(a.position.X, expectedX); 
-            Assert.AreEqual(a.position.Y, expectedY);
+            Assert.AreEqual(a.Position.X, expectedX); 
+            Assert.AreEqual(a.Position.Y, expectedY);
 
-            Assert.AreEqual(a.hitBox.X, expectedX);
-            Assert.AreEqual(a.hitBox.Y, expectedY);
+            Assert.AreEqual(a.HitBox.X, expectedX);
+            Assert.AreEqual(a.HitBox.Y, expectedY);
         }
     }
 }

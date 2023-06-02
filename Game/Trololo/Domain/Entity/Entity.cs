@@ -5,19 +5,20 @@ namespace Trololo.Domain
     public class Entity
     {
         public Transform transform = new Transform(new PointF(0,0), new RectangleF());
+
         private int health;
-        public float velocity;
-        public static float gravity = (float)3;
+        public float velocity { get; set; }
+        public readonly float gravity = (float)3;
+
         public Image texture = null;
-
-
+  
         public void SetTransform(PointF position)
         {
-            transform.position = position;
+            transform.Position = position;
             if (texture != null)
-                transform.hitBox = new RectangleF(position.X, position.Y, texture.Width, texture.Height);
+                transform.HitBox = new RectangleF(position.X, position.Y, texture.Width, texture.Height);
             else
-                transform.hitBox = new RectangleF(position.X, position.Y, 0, 0);
+                transform.HitBox =  new RectangleF(position.X, position.Y, 0, 0);
         }
 
         public int GetHealth()

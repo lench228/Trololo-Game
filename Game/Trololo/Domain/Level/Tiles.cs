@@ -43,8 +43,6 @@ namespace Trololo.Domain
         public static bool IsEnd;
         public ExitTile(Point position)
         {
-            IsEnd = true;
-            Name = "Exit"; 
             IsBorder = false;
             transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
             texture = null;
@@ -52,6 +50,7 @@ namespace Trololo.Domain
     }
     public class GunTile : Tile
     {
+        public static bool IsGunTile ;
         public GunTile(Point position)
         {
             IsBorder = false;
@@ -82,6 +81,17 @@ namespace Trololo.Domain
                 number += 1; 
             transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
             texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Images\\Ed{number}.png");
+        }
+    }
+
+    public class LadderTile : Tile
+    {
+
+        public LadderTile(Point position)
+        {
+            IsBorder = false;
+            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            texture = Resources.Ladder;
         }
     }
 }

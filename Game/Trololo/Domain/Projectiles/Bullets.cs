@@ -13,12 +13,12 @@ namespace Trololo.Domain
         public Bullet(Image projectTexture, PointF position, int Direction): base(projectTexture, position) 
         { 
             direction = Direction;
-            transform.position.Y += 80; 
+            Transform.Position = new PointF(Transform.Position.X, Transform.Position.Y + 80); 
         }
 
         public void Shoot()
         {
-           transform.Move(new PointF(velocity * direction * 4, 0));  
+           Transform.Move(new PointF(velocity * direction * 4, 0));  
         }
     }
 }

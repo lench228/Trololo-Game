@@ -9,7 +9,7 @@ namespace Levels
     public class Level
     {
         public readonly Tile[,] tiles;
-
+        public readonly List<LadderTile> ladders = new List<LadderTile>(); 
         public Level(string text, Game game, bool flag)
         {
             if (String.IsNullOrEmpty(text))
@@ -44,7 +44,7 @@ namespace Levels
                     {
                         case 'E':
                             tiles[x, y] = new EnemySpawn(new Point(lastTile.X, lastTile.Y));
-                            game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game, flag);
+                            game.CreateEnemy(new Point(lastTile.X, lastTile.Y), 0, game);
                         break;
                         case '.':
                         tiles[x, y] = new EmptyTile(new Point(lastTile.X, lastTile.Y));
@@ -73,9 +73,12 @@ namespace Levels
                         case 'S':
                         tiles[x, y] = new GunTile(new Point(lastTile.X, lastTile.Y));
                         break;
+                        case '#':
+                        tiles[x, y] = new LadderTile(new Point(lastTile.X, lastTile.Y));
+                        ladders.Add(tiles[x, y] as LadderTile);
+                        break;
                         default:
                         return null; 
-
                     }
                 }
             }

@@ -35,8 +35,8 @@ namespace Trololo.Tests
 
             a.SetTransform(new System.Drawing.PointF(x, y));
 
-            Assert.AreEqual(a.transform.position.X, expectedX);
-            Assert.AreEqual(a.transform.position.Y, expectedY); 
+            Assert.AreEqual(a.transform.Position.X, expectedX);
+            Assert.AreEqual(a.transform.Position.Y, expectedY); 
         }
     }
 }
