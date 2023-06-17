@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using Levels;
 using Trololo.Domain.Projectiles;
 using Trololo.Properties;
@@ -43,13 +42,13 @@ namespace Trololo.Domain
         public void CreateEnemy(Point location)
         {
             var enemy = new Enemy();
-            Enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.Transform.Position, player);
+            Enemies[enemy] = new EnemyShoot(Image.FromFile("View//Images//EnemyShot.png"), enemy.Transform.Position, player);
             enemy.SetTransform(location);
         }
 
         public void CreateHeal(PointF location)
         {
-            Heals.Add(new Projectiles.Heal(Resources.Heal, location));
+            Heals.Add(new Projectiles.Heal(Image.FromFile("View//Images//Heal.png"), location));
         }
 
         public void SetPause()
@@ -122,7 +121,7 @@ namespace Trololo.Domain
                 Enemies = new Dictionary<Enemy, EnemyShoot>();
             }
             Heals = new List<Heal>();
-            Level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{CurrentLevel}.txt"), this, isNextToLoad);
+            Level = new Level(File.ReadAllText($"Levels\\level{CurrentLevel}.txt"), this, isNextToLoad);
         }
     }
 }

@@ -1,150 +1,101 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" />
-  <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FD9F632-FEBB-4AF9-942C-73A428A50663}</ProjectGuid>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Trololo</RootNamespace>
-    <AssemblyName>Trololo</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\wrwsc\Desktop\,t,hf\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>93E8C6A36F58E983EB8F4CA26E8C3E66CDC2A877</ManifestCertificateThumbprint>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <ManifestKeyFile>Trololo_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+    <AssemblyTitle>Trololo</AssemblyTitle>
+    <Product>Trololo</Product>
+    <Copyright>Copyright ©  2023</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <None Remove="View\Images\background.png" />
+    <None Remove="View\Images\Begin.png" />
+    <None Remove="View\Images\blockTexture.png" />
+    <None Remove="View\Images\ContinueButton.png" />
+    <None Remove="View\Images\DeathScreen.png" />
+    <None Remove="View\Images\Ed1.png" />
+    <None Remove="View\Images\Ed2.png" />
+    <None Remove="View\Images\Ed3.png" />
+    <None Remove="View\Images\Ed4.png" />
+    <None Remove="View\Images\Enemy.png" />
+    <None Remove="View\Images\EnemyGround.png" />
+    <None Remove="View\Images\EnemyShot.png" />
+    <None Remove="View\Images\enemySky.png" />
+    <None Remove="View\Images\Exit.png" />
+    <None Remove="View\Images\ExitButton.png" />
+    <None Remove="View\Images\gun.png" />
+    <None Remove="View\Images\Heal.png" />
+    <None Remove="View\Images\HealthEmpty.png" />
+    <None Remove="View\Images\HealthFull.png" />
+    <None Remove="View\Images\InvinsiblePlayer.png" />
+    <None Remove="View\Images\Ladder.png" />
+    <None Remove="View\Images\LevelRestart.png" />
+    <None Remove="View\Images\menu.png" />
+    <None Remove="View\Images\PauseBack.png" />
+    <None Remove="View\Images\PauseMenu.png" />
+    <None Remove="View\Images\PlayerShoot.png" />
+    <None Remove="View\Images\RotatedInvinsiblePlayer.png" />
+    <None Remove="View\Images\testPlayer.png" />
+    <None Remove="View\Images\testPlayerRotated.png" />
+    <None Remove="View\Images\ToMenuButton.png" />
+    <None Remove="View\Images\WinBack.png" />
+    <None Remove="View\Images\WinBackPict.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Projectiles\Bullets.cs" />
-    <Compile Include="Domain\Entity\Enemy.cs" />
-    <Compile Include="Domain\Entity\Entity.cs" />
-    <Compile Include="Domain\CollitionsControl.cs" />
-    <Compile Include="Domain\GameStages.cs" />
-    <Compile Include="Domain\Game.cs" />
-    <Compile Include="Domain\Level\Level.cs" />
-    <Compile Include="Domain\Entity\Player.cs" />
-    <Compile Include="Domain\Projectiles\Heal.cs" />
-    <Compile Include="Domain\Projectiles\EnemyShoot.cs" />
-    <Compile Include="Domain\Projectiles\Projectile.cs" />
-    <Compile Include="Domain\Level\Tiles.cs" />
-    <Compile Include="Domain\Level\Tile.cs" />
-    <Compile Include="Domain\Transform.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Tests\CollisionsTest.cs" />
-    <Compile Include="Tests\EntityTest.cs" />
-    <Compile Include="Tests\TransformTest.cs" />
-    <Compile Include="Tests\levelTest.cs" />
-    <Compile Include="View\Controls\GameControl.cs">
+    <Compile Update="View\Controls\GameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\GameControl.Designer.cs">
-      <DependentUpon>GameControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Controls\WinControl.cs">
+    <Compile Update="View\Controls\WinControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\WinControl.Designer.cs">
-      <DependentUpon>WinControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\GraphicsMethods.cs" />
-    <Compile Include="View\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Controls\MainMenu.cs">
+    <Compile Update="View\Controls\MainMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Controls\LooseControl.cs">
+    <Compile Update="View\Controls\LooseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\LooseControl.Designer.cs">
-      <DependentUpon>LooseControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Controls\PauseControl.cs">
+    <Compile Update="View\Controls\PauseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Controls\PauseControl.Designer.cs">
-      <DependentUpon>PauseControl.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Controls\GameControl.resx">
-      <DependentUpon>GameControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Controls\MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Heal.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Domain\Levels\level1.txt" />
@@ -168,113 +119,163 @@
     <None Include="Domain\Levels\level7.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="View\Sound\EnemyShoot.wav" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="View\Sound\mvpSound.wav" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="View\Sound\PlayerShoot.wav" />
+    <Resource Include="View\Images\background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Begin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\blockTexture.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\ContinueButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\DeathScreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Ed1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Ed2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Ed3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Ed4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Enemy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\EnemyGround.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\EnemyShot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\enemySky.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Exit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\ExitButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\gun.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Heal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\HealthEmpty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\HealthFull.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\InvinsiblePlayer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\Ladder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\LevelRestart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\menu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\PauseBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\PauseMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\PlayerShoot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\RotatedInvinsiblePlayer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\testPlayer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\testPlayerRotated.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\ToMenuButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\WinBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Images\WinBackPict.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="View\Images\background.png" />
+    <None Update="Levels\level1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level11.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level5.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level6.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level7.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level8.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Levels\level9.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="View\Sound\EnemyShoot.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="View\Sound\mvpSound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="View\Sound\PlayerShoot.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\blockTexture.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\ContinueButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\DeathScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Ed1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Ed2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Ed3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Ed4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Enemy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\EnemyGround.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\EnemyShot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\enemySky.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\gun.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\HealthEmpty.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\HealthFull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\InvinsiblePlayer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\PauseBack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\PauseMenu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\PlayerShoot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\RotatedInvinsiblePlayer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\testPlayer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\testPlayerRotated.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\ToMenuButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Ladder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\LevelRestart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Begin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\Exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\WinBack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\ExitButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="View\Images\WinBackPict.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props'))" />
-  </Target>
 </Project>

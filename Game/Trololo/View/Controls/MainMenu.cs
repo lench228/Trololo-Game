@@ -18,15 +18,15 @@ namespace Trololo.View
             this.game = game;
             var start = new PictureBox()
             {
-                Image = Resources.Begin,
-                Size = Resources.Begin.Size,
+                Image = Image.FromFile("View//Images//Begin.png"),
+                Size = Image.FromFile("View//Images//Begin.png").Size,
                 BackColor = Color.Transparent,
                 Location = new Point(200, 500)
             };
             var exit = new PictureBox()
             {
-                Image = Resources.Exit,
-                Size = Resources.Exit.Size,
+                Image = Image.FromFile("View//Images//Exit.png"),
+                Size = Image.FromFile("View//Images//Exit.png").Size,
 
                 BackColor = Color.Transparent,
                 Location = new Point(200, 700)

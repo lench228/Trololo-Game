@@ -332,7 +332,7 @@ namespace Trololo.View
             if (player.States.IsWithGun && player.bullets.Count <= 3 && !player.States.IsInvincible && !isBulletReleased)
             {
                 player.States.IsShooting = true;
-                player.bullets.Add(new Bullet(Resources.PlayerShootSprite, player.Transform.Position, player.Transform.Direction));
+                player.bullets.Add(new Bullet(Image.FromFile("View//Images//PlayerShoot.png"), player.Transform.Position, player.Transform.Direction));
                 PlayMedia(playerShootPlayer);
                 isBulletReleased = true;
             }

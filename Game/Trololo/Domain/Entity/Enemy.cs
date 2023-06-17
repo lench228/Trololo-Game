@@ -21,7 +21,7 @@ namespace Trololo.Domain
         public Enemy()
         {
             this.SetHealth(3);
-            this.texture = Resources.enemySky;
+            this.texture = Image.FromFile("View//Images//EnemySky.png");
             this.velocity = (float)3;
             var rnd = new Random().Next(50);
             enemyType = rnd < 20 ? 0 : 1;

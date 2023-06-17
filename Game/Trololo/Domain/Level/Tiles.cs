@@ -34,7 +34,7 @@ namespace Trololo.Domain
         {
             IsBorder = true;
             Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            Texture = Resources.blockTexture;
+            Texture = Image.FromFile("View//Images//blockTexture.png"); ;
         }
     }
 
@@ -56,7 +56,7 @@ namespace Trololo.Domain
             IsBorder = false;
             IsGunTile = true; 
 
-            Texture = Resources.gun;
+            Texture = Image.FromFile("View//Images//gun.png");
             Transform = new Transform(position, new RectangleF(position.X, position.Y, Texture.Size.Width, Texture.Size.Width));
         }
     }
@@ -80,7 +80,7 @@ namespace Trololo.Domain
             if(number < 4)
                 number += 1; 
             Transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
-            Texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Images\\Ed{number}.png");
+            Texture = Image.FromFile($"View\\Images\\Ed{number}.png");
         }
     }
 
@@ -91,7 +91,7 @@ namespace Trololo.Domain
         {
             IsBorder = false;
             Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            Texture = Resources.Ladder;
+            Texture = Image.FromFile("View//Images//Ladder.png");
         }
     }
 }

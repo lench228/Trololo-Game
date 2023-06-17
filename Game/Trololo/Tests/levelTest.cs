@@ -3,7 +3,6 @@ using System;
 using System.Drawing;
 using Trololo.Domain;
 using Levels;
-using System.Management.Instrumentation;
 
 namespace Trololo.Tests
 {

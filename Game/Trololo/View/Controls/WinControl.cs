@@ -19,17 +19,17 @@ namespace Trololo.View.Controls
 
         public void Run(Game game_)
         {
-            this.BackgroundImage = Resources.WinBack; 
+            this.BackgroundImage = Image.FromFile("View//Images//WinBack.png");
             var b = new PictureBox();
             game = game_;
             b.Location = new System.Drawing.Point(100, 630);
-            b.Image= Resources.ExitButton;
+            b.Image= Image.FromFile("View//Images//ExitButton.png");
             b.Size = b.Image.Size;
             b.BackColor = Color.Transparent;
             b.Click += ExitGame;
             var a = new PictureBox();
 
-            a.Image = Resources.WinBackPict;
+            a.Image = Image.FromFile("View//Images//WinBackPict.png");
             a.Size = a.Image.Size; 
             a.BackColor= Color.Transparent;
             a.Location = new Point(270, 50);

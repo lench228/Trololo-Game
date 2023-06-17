@@ -45,8 +45,8 @@ internal static class GraphicsMethods
 
     public static void DrawHealth(PaintEventArgs e, int health)
     {
-        var emptyHealthTexture = Resources.HealthEmpty;
-        var fullHealthTexture = Resources.HealthFull;
+        var emptyHealthTexture = Image.FromFile("View//Images//HealthEmpty.png"); ;
+        var fullHealthTexture = Image.FromFile("View//Images//HealthFull.png");
         e.Graphics.DrawImage(emptyHealthTexture, 10, 803, emptyHealthTexture.Width, emptyHealthTexture.Height);
         for (var i = 0; i < health; i++)
         {

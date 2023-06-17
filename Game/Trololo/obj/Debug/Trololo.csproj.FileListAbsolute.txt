@@ -20,3 +20,7 @@ C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\testcentric.engine.me
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\nunit.framework.dll
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\nunit.framework.xml
 C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.csproj.CopyComplete
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\Trololo.exe.manifest
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\bin\Debug\Trololo.application
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.exe.manifest
+C:\Users\wrwsc\Desktop\Trololo-Game\Game\Trololo\obj\Debug\Trololo.application

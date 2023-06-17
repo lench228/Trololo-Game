@@ -23,7 +23,7 @@ namespace Trololo.View
         private Game game; 
         public void Run(Game Game)
         {
-            var s = Resources.DeathScreen;
+            var s = Image.FromFile("View//Images//DeathScreen.png");
             game = Game; 
             this.BackgroundImage = s;
             var a = new Label();

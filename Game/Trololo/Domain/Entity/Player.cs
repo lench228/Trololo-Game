@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using Trololo.View;
 using System.IO;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,8 +55,8 @@ namespace Trololo.Domain
 
             States = new PlayerStates();
 
-            this.textureRight = Resources.testPlayer;
-            this.textureLeft = Resources.testPlayerRotated;
+            this.textureRight = Image.FromFile("View//Images//testPlayer.png");
+            this.textureLeft = Image.FromFile("View//Images//testPlayerRotated.png");
 
             this.texture = textureRight;
 
@@ -70,15 +69,15 @@ namespace Trololo.Domain
 
         public void SetInvins()
         {
-            this.textureRight = Resources.InvinsiblePlayer;
-            this.textureLeft =Resources.RotatedInvinsiblePlayer;
+            this.textureRight = Image.FromFile("View//Images//InvinsiblePlayer.png");
+            this.textureLeft = Image.FromFile("View//Images//RotatedInvinsiblePlayer.png");
             States.IsInvincible = true; 
         }
 
         public void UnsetInvins()
         {
-            this.textureRight = Resources.testPlayer;
-            this.textureLeft = Resources.testPlayerRotated;
+            this.textureRight = Image.FromFile("View//Images//testPlayer.png");
+            this.textureLeft = Image.FromFile("View//Images//testPlayerRotated.png");
             States.IsInvincible = false;
         }
 

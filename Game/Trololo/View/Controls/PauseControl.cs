@@ -25,11 +25,11 @@ namespace Trololo.View
         {
             game = Game; 
             this.Size = new Size(1380, 980);
-            this.BackgroundImage = Resources.PauseBack;
+            this.BackgroundImage = Image.FromFile("View//Images//PauseBack.png");
 
-            var aPict = Resources.ContinueButton;
-            var bPict = Resources.ToMenuButton; 
-            var cPict = Resources.LevelRestart;   
+            var aPict = Image.FromFile("View//Images//ContinueButton.png");
+            var bPict = Image.FromFile("View//Images//ToMenuButton.png");
+            var cPict = Image.FromFile("View//Images//LevelRestart.png"); ;   
             var a = new PictureBox();
             var b = new PictureBox();
             var c = new PictureBox(); 

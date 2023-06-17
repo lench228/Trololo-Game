@@ -1,0 +1,17 @@
+FFFFFFFFFFFFFFFFFFFFXXF
+FFFFFFFFFFFFFFFFFFFF##F
+FFFFFFFFFFFFFFFFFFFF##F
+....................##F
+....................##F
+E...................##F
+....................##F
+E...................##F
+....................##F
+FFF##FFFFF##FFFFFFFFFFF
+...##.....##..........F
+.P.##.....##.......E..F
+...##.....##..........F
+...##FFFFF##..........F
+FFFFFFFFFFFFFFFFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFF
+
