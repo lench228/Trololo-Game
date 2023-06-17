@@ -12,7 +12,7 @@ namespace Trololo.Domain
 {
     public class Enemy : Entity
     {
-        private int enemyType;
+        private readonly int enemyType;
         private int counter = 0;
 
         public bool isLoopEnd = false;
@@ -53,13 +53,13 @@ namespace Trololo.Domain
                         player.Hurt();
                         isShooted = false;
                     }
-                    if (!CollitionsControl.Collide(playerHitbox, shoot.Transform.Position.X, shoot.Transform.Position.Y, 100, 100, game.level.tiles))
+                    if (!CollitionsControl.Collide(playerHitbox, shoot.Transform.Position.X, shoot.Transform.Position.Y, 100, 100, game.Level.tiles))
                         isShooted = false;
                 }
                 if (!isLoopEnd)
-                    Patrol(game.level.tiles);
+                    Patrol(game.Level.tiles);
                 else
-                    GoGorizontal(game.level.tiles);
+                    GoGorizontal(game.Level.tiles);
             
         }
 
@@ -95,7 +95,7 @@ namespace Trololo.Domain
 
         public bool IsDropHeal()
         {
-            return enemyType == 0 ? true : false;  
+            return enemyType == 0;  
         }
     }
 }

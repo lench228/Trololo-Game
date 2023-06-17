@@ -5,25 +5,25 @@ namespace Trololo.Domain
 {
     public class Transform
     {
-        private PointF _position;
+        private PointF position;
         public PointF Position
         {
-            get { return _position; }
-            set { _position = value; }
+            get { return position; }
+            set { position = value; }
         }
 
-        private RectangleF _hitBox;
+        private RectangleF hitBox;
         public RectangleF HitBox
         {
-            get { return _hitBox; }
-            set { _hitBox = value; }
+            get { return hitBox; }
+            set { hitBox = value; }
         }
 
-        private int _direction;
+        private int direction;
         public int Direction
         {
-            get { return _direction; }
-            set { _direction = value; }
+            get { return direction; }
+            set { direction = value; }
         }
 
         public Transform(PointF position, RectangleF box)

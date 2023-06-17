@@ -35,12 +35,20 @@ namespace Trololo.View
                 ShowGameControl();
                 break;
 
-                case GameStage.End:
+                case GameStage.Death:
                 ShowDeath();
                 break;
 
                 case GameStage.Pause:
                 ShowPause();
+                break;
+
+                case GameStage.Final:
+                ShowWin();
+                break;
+
+                case GameStage.Exit:
+                this.Close();
                 break;
             }
 
@@ -52,6 +60,7 @@ namespace Trololo.View
             gameControl.Hide();
             looseControl.Hide();
             pauseControl.Hide();
+
         }
 
         private void ShowGameControl()
@@ -70,6 +79,10 @@ namespace Trololo.View
             mainMenu.Show();
         }
 
+        public void CloseForm()
+        {
+            this.Close();
+        }
 
 
         private void ShowPause()
@@ -85,6 +98,14 @@ namespace Trololo.View
             HideScreens();
             looseControl.Run(game);
             looseControl.Show();
+        }
+
+        private void ShowWin()
+        {
+            HideScreens();
+            GameControl.timer.Stop();
+            winControl.Run(game);
+            winControl.Show();
         }
     }
 }

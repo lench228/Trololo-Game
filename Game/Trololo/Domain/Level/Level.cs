@@ -21,7 +21,7 @@ namespace Levels
             else
             {
                 var stringTiles = SplitLines(text, game);
-                tiles = LevelCreate(stringTiles, game, flag);
+                tiles = LevelCreate(stringTiles, game);
             }
         }
 
@@ -31,7 +31,7 @@ namespace Levels
             return lines;
         }
 
-        public Tile[,] LevelCreate(string[] lines, Game game, bool flag)
+        public Tile[,] LevelCreate(string[] lines, Game game)
         {
             var tiles = new Tile[lines[0].Length, lines.Length];
             var lastTile = new Point(0, 0);

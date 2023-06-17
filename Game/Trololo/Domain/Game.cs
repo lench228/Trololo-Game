@@ -11,34 +11,45 @@ namespace Trololo.Domain
 {
     public class Game 
     {
-        public GameStage stage = GameStage.NotStarted;
-        public Level level;
-        private Player player;
-        public static int currentLevel;
+        public GameStage Stage = GameStage.NotStarted;
+        public Level Level;
+        public static int CurrentLevel;
         public event Action<GameStage> StageChanged;
+        public Dictionary<Enemy, EnemyShoot> Enemies = new Dictionary<Enemy, EnemyShoot>();
+        public List<Heal> Heals= new List<Heal>();
 
-        public Dictionary<Enemy, EnemyShoot> enemies = new Dictionary<Enemy, EnemyShoot>();
-        public List<Heal> heals= new List<Heal>();
-
+        private Player player;
         public Player GetPlayer() => player;
+
+
+
+        public Game()
+        {
+            CurrentLevel = 0;
+            Stage = GameStage.NotStarted;
+            if (Stage == GameStage.Play)
+                LoadStage(false);
+        }
+        
+        public void Exit()
+        {
+            ChangeStage(GameStage.Exit);
+        }
+        public void Win()
+        {
+            
+            ChangeStage(GameStage.Final);
+        }
         public void CreateEnemy(Point location)
         {
             var enemy = new Enemy();
-            enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.Transform.Position, player);
+            Enemies[enemy] = new EnemyShoot(Resources.EnemyShootSprite, enemy.Transform.Position, player);
             enemy.SetTransform(location);
         }
 
         public void CreateHeal(PointF location)
         {
-            heals.Add(new Projectiles.Heal(Resources.Heal, location));
-        }
-
-        public Game() 
-        {
-            currentLevel = 0;
-            stage = GameStage.NotStarted;
-            if(stage == GameStage.Play)
-                LoadStage(false);  
+            Heals.Add(new Projectiles.Heal(Resources.Heal, location));
         }
 
         public void SetPause()
@@ -61,21 +72,22 @@ namespace Trololo.Domain
         public void ShowMenu()
         {
             player.SetHealth(3);
-            currentLevel = 0;
+            CurrentLevel = 0;
             player.States.IsShooting = false;
-            enemies = new Dictionary<Enemy, EnemyShoot>(); 
+            GuideTile.number = 0;
+            Enemies = new Dictionary<Enemy, EnemyShoot>(); 
             ChangeStage(GameStage.Menu); 
         }
 
         public void RestartLevel()
         {
             player.SetHealth(3);
-            enemies = new Dictionary<Enemy, EnemyShoot>();
+            Enemies = new Dictionary<Enemy, EnemyShoot>();
             LoadStage(false);
 
-            player.Transform.Position = level.PlayerSpawn.transform.Position;
+            player.Transform.Position = Level.PlayerSpawn.Transform.Position;
             var tempRect = player.Transform.HitBox; 
-            tempRect.Location = level.PlayerSpawn.transform.Position;
+            tempRect.Location = Level.PlayerSpawn.Transform.Position;
             player.Transform.HitBox = tempRect;
 
             this.ChangeStage(GameStage.Play); 
@@ -83,12 +95,12 @@ namespace Trololo.Domain
 
         public void Death()
         {
-            this.ChangeStage(GameStage.End);
+            this.ChangeStage(GameStage.Death);
         }
 
         private void ChangeStage(GameStage stage)
         {
-            this.stage = stage;
+            this.Stage = stage;
             StageChanged?.Invoke(stage);
         }
 
@@ -103,20 +115,14 @@ namespace Trololo.Domain
 
         public void LoadStage(bool isNextToLoad)
         {
-
-            if (currentLevel < 15 && isNextToLoad)
-                currentLevel += 1;
-            if (stage == GameStage.Pause && stage == GameStage.End)
+            if (CurrentLevel < 12 && isNextToLoad)
+                CurrentLevel += 1;
+            if (Stage == GameStage.Pause && Stage == GameStage.Death)
             {
-                enemies = new Dictionary<Enemy, EnemyShoot>();
+                Enemies = new Dictionary<Enemy, EnemyShoot>();
             }
-            heals = new List<Heal>();
-            level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{currentLevel}.txt"), this, isNextToLoad);
-        }
-
-        public static void GunIsPicked()
-        {
-            //player.States.IsWithGun= true;
+            Heals = new List<Heal>();
+            Level = new Level(File.ReadAllText($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\Domain\\Levels\\level{CurrentLevel}.txt"), this, isNextToLoad);
         }
     }
 }

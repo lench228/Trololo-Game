@@ -84,6 +84,12 @@
     <Compile Include="View\Controls\GameControl.Designer.cs">
       <DependentUpon>GameControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\WinControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\WinControl.Designer.cs">
+      <DependentUpon>WinControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\GraphicsMethods.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -253,6 +259,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="View\Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\WinBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\ExitButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="View\Images\WinBackPict.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

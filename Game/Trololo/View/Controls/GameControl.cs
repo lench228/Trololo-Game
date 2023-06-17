@@ -16,6 +16,7 @@ namespace Trololo.View
     {
 
         public static System.Windows.Forms.Timer timer;
+        public static SoundPlayer enemyShootPlayer;
 
         private static Graphics g;
         private static Game game;
@@ -23,8 +24,6 @@ namespace Trololo.View
         private static Timer invincibleTimer; 
         private static Timer cooldownTimer;
         private System.Windows.Forms.ProgressBar progressBar;
-
-        public static SoundPlayer enemyShootPlayer;
         private static SoundPlayer playerShootPlayer;
 
         private bool isBulletReleased = false;
@@ -133,8 +132,8 @@ namespace Trololo.View
 
             CheckHeal(toDeleteHeals, player);
 
-            foreach (var enemy in game.enemies.Keys)
-                enemy.UpdateEnemy(game.enemies, game, player);
+            foreach (var enemy in game.Enemies.Keys)
+                enemy.UpdateEnemy(game.Enemies, game, player);
             DeleteObjects(toDeleteEnemies, toDeleteHeals, game, player);
             Invalidate();
         }
@@ -142,10 +141,10 @@ namespace Trololo.View
         private static void DeleteObjects(Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Heal> heals ,Game game, Player player)
         {
             foreach(var heal in heals)
-                game.heals.Remove(heal);
+                game.Heals.Remove(heal);
 
             foreach(var value in toDeleteEnemies.Keys)
-                 game.enemies.Remove(value);
+                 game.Enemies.Remove(value);
         }
 
         public void GravitationWork()
@@ -153,7 +152,7 @@ namespace Trololo.View
             if (!player.States.isOnLadder)
             {
                 var move = new PointF(player.Transform.Position.X, player.Transform.Position.Y + player.gravity);
-                if (CollitionsControl.Collide(player.Transform.HitBox, move.X, move.Y, player.Transform.HitBox.Width, player.Transform.HitBox.Height, game.level.tiles))
+                if (CollitionsControl.Collide(player.Transform.HitBox, move.X, move.Y, player.Transform.HitBox.Width, player.Transform.HitBox.Height, game.Level.tiles))
                 {
                     player.States.IsInFly = true;
                     player.Transform.Move(new PointF(0, player.gravity));
@@ -162,10 +161,10 @@ namespace Trololo.View
 
                     player.States.IsInFly = false;
             }
-            foreach (var heal in game.heals)
+            foreach (var heal in game.Heals)
             {
                 var move = new PointF(heal.Transform.Position.X, heal.Transform.Position.Y + 10);
-                if (CollitionsControl.Collide(heal.Transform.HitBox, move.X, move.Y, heal.Transform.HitBox.Width, heal.Transform.HitBox.Height, game.level.tiles))
+                if (CollitionsControl.Collide(heal.Transform.HitBox, move.X, move.Y, heal.Transform.HitBox.Width, heal.Transform.HitBox.Height, game.Level.tiles))
                     heal.Transform.Move(new PointF(2, 10));
             }
         }
@@ -173,7 +172,7 @@ namespace Trololo.View
 
         private static void CheckHeal(List<Heal> toDeleteHeals, Player player)
         {
-            var intersected = game.heals.Where(x => x.Transform.HitBox.IntersectsWith(player.Transform.HitBox));
+            var intersected = game.Heals.Where(x => x.Transform.HitBox.IntersectsWith(player.Transform.HitBox));
             if (intersected.Count() == 0)
                 return;
             foreach (var heal in intersected)
@@ -188,16 +187,16 @@ namespace Trololo.View
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (game.stage == GameStage.Play)
+            if (game.Stage == GameStage.Play)
             {
-                GraphicsMethods.DrawLvl(game.level, e, player);
+                GraphicsMethods.DrawLvl(game.Level, e, player);
 
-                foreach (var enemy in game.enemies.Keys)
+                foreach (var enemy in game.Enemies.Keys)
                 {
                     GraphicsMethods.DrawEnemy(enemy.Transform, e, enemy.texture);
                     if (enemy.isShooted)
                     {
-                        GraphicsMethods.DrawProjectile(game.enemies[enemy].Transform, e, game.enemies[enemy].Texture);
+                        GraphicsMethods.DrawProjectile(game.Enemies[enemy].Transform, e, game.Enemies[enemy].Texture);
                     }
                 }
 
@@ -206,11 +205,11 @@ namespace Trololo.View
                     GraphicsMethods.DrawProjectile(bullet.Transform, e, bullet.Texture);
                 }
 
-                foreach (var heal in game.heals)
+                foreach (var heal in game.Heals)
                     GraphicsMethods.DrawHeal(heal.Transform, e, heal.Texture);
-                foreach (var ladder in game.level.Ladders)
+                foreach (var ladder in game.Level.Ladders)
                 {
-                    GraphicsMethods.DrawProjectile(ladder.transform, e, ladder.texture);
+                    GraphicsMethods.DrawProjectile(ladder.Transform, e, ladder.Texture);
                 }
                 GraphicsMethods.DrawChar(player.Transform, e, player);
                 GraphicsMethods.DrawHealth(e, player.GetHealth());
@@ -291,19 +290,24 @@ namespace Trololo.View
                 player.States.IsInFly = true;
             }
 
-            if (CollitionsControl.Collide(player.Transform.HitBox, player.Transform.Position.X + move.X, player.Transform.Position.Y + move.Y, player.Transform.HitBox.Width, player.Transform.HitBox.Height, game.level.tiles))
+            if (CollitionsControl.Collide(player.Transform.HitBox, player.Transform.Position.X + move.X, player.Transform.Position.Y + move.Y, player.Transform.HitBox.Width, player.Transform.HitBox.Height, game.Level.tiles))
                 player.Transform.Move(move);
             CheckExitTiles();
             CheckLadders();
-            if (game.level.GunTile != null && !player.States.IsWithGun && player.Transform.HitBox.IntersectsWith(game.level.GunTile.transform.HitBox)) 
+            if (game.Level.GunTile != null && !player.States.IsWithGun && player.Transform.HitBox.IntersectsWith(game.Level.GunTile.Transform.HitBox)) 
                 player.States.IsWithGun= true;
         }
 
         private void CheckExitTiles()
         {
-            foreach (var exitTile in game.level.ExitTiles)
-                if (player.Transform.HitBox.IntersectsWith(exitTile.transform.HitBox) && game.enemies.Count == 0)
+            foreach (var exitTile in game.Level.ExitTiles)
+                if (player.Transform.HitBox.IntersectsWith(exitTile.Transform.HitBox) && game.Enemies.Count == 0)
                 {
+                    if(Game.CurrentLevel == 11)
+                    {
+                        game.Win();
+                        break;
+                    }
                     game.LoadStage(true);
                     break;
                 }
@@ -313,9 +317,9 @@ namespace Trololo.View
         {
             player.States.isOnLadder = false;
 
-            foreach (var ladder in game.level.Ladders)
+            foreach (var ladder in game.Level.Ladders)
             {
-                if (ladder.transform.HitBox.IntersectsWith(player.Transform.HitBox))
+                if (ladder.Transform.HitBox.IntersectsWith(player.Transform.HitBox))
                 {
                     player.States.isOnLadder = true;
                     break;

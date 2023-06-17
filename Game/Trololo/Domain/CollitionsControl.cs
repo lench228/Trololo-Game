@@ -13,12 +13,12 @@ namespace Trololo.Domain
                 return false;
             for (var i = x; i <= width + x; i += 2)
                 for (var j = y; j <= height + y; j += 2)
-                    if (IsBorder(i, j, tiles, hitbox))
+                    if (IsBorder(i, j, tiles))
                         return false;
             return true;
         }
 
-        private static bool IsBorder (float x, float y, Tile[,] tiles, RectangleF hitbox)
+        private static bool IsBorder (float x, float y, Tile[,] tiles)
         {
             if (x < 0 || x >= tiles.GetLength(0) * 60)
                 return true; 
@@ -29,8 +29,6 @@ namespace Trololo.Domain
 
             if(value.IsBorder)
                 return true;
-            if (value is GunTile)
-                Game.GunIsPicked(); 
             return false;
         }
     }

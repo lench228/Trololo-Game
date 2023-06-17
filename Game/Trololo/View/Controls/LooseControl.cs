@@ -17,7 +17,7 @@ namespace Trololo.View
         public LooseControl()
         {
             InitializeComponent();
-            this.Size = new Size(11375, 980); 
+            this.Size = new Size(1375, 980); 
         }
 
         private Game game; 

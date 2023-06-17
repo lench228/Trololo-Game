@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Trololo.View.Controls;
 
 namespace Trololo.View
 {
@@ -34,12 +35,14 @@ namespace Trololo.View
             this.gameControl = new Trololo.View.GameControl();
             this.looseControl = new Trololo.View.LooseControl(); 
             this.pauseControl = new Trololo.View.PauseControl();
+            this.winControl = new Trololo.View.Controls.WinControl();
 
             this.ClientSize = new System.Drawing.Size(1300, 980);
             this.Controls.Add(this.gameControl);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.looseControl);
-            this.Controls.Add(this.pauseControl); 
+            this.Controls.Add(this.pauseControl);
+            this.Controls.Add(this.winControl);
             KeyPreview = true;
         }
 
@@ -48,6 +51,7 @@ namespace Trololo.View
         private MainMenu mainMenu;
         private GameControl gameControl;
         private LooseControl looseControl;
-        private PauseControl pauseControl; 
+        private PauseControl pauseControl;
+        private WinControl winControl; 
     }
 }

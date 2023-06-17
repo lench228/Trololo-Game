@@ -13,11 +13,6 @@ namespace Trololo.View
             InitializeComponent();
         }
 
-        private void Start_MouseClick(object sender, MouseEventArgs e)
-        {
-            game.Start(); 
-        }
-
         public void Run(Game game)
         {
             this.game = game;
@@ -39,6 +34,18 @@ namespace Trololo.View
             Controls.Add(start);
             Controls.Add(exit);
             start.MouseClick += Start_MouseClick;
+            exit.MouseClick += Exit_MouseClick;
         }
+
+        private void Exit_MouseClick(object sender, MouseEventArgs e)
+        {
+            game.Exit();
+        }
+
+        private void Start_MouseClick(object sender, MouseEventArgs e)
+        {
+            game.Start();
+        }
+
     }
 }

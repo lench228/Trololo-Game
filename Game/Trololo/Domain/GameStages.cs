@@ -7,6 +7,8 @@ namespace Trololo.Domain
         Menu = 1,
         Play = 2,
         Pause = 3,
-        End = 4
+        Death = 4,
+        Final = 5,
+        Exit = 6
     }
 }

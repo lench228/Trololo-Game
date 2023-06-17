@@ -13,8 +13,8 @@ namespace Trololo.Domain
         public EnemySpawn(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture =null;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture =null;
         }
     }
 
@@ -23,8 +23,8 @@ namespace Trololo.Domain
         public EmptyTile(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = null;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture = null;
         }
     }
 
@@ -33,8 +33,8 @@ namespace Trololo.Domain
         public FloorTile(Point position)
         {
             IsBorder = true;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = Resources.blockTexture;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture = Resources.blockTexture;
         }
     }
 
@@ -44,8 +44,8 @@ namespace Trololo.Domain
         public ExitTile(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = null;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture = null;
         }
     }
     public class GunTile : Tile
@@ -56,8 +56,8 @@ namespace Trololo.Domain
             IsBorder = false;
             IsGunTile = true; 
 
-            texture = Resources.gun;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, texture.Size.Width, texture.Size.Width));
+            Texture = Resources.gun;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, Texture.Size.Width, Texture.Size.Width));
         }
     }
 
@@ -66,8 +66,8 @@ namespace Trololo.Domain
         public PlayerSpawn(Point position)
         {
             IsBorder = false; 
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = null;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture = null;
         }
     }
 
@@ -79,8 +79,8 @@ namespace Trololo.Domain
             IsBorder = false; 
             if(number < 4)
                 number += 1; 
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
-            texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Images\\Ed{number}.png");
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 140, 140));
+            Texture = Image.FromFile($"C:\\Users\\wrwsc\\Desktop\\Trololo-Game\\Game\\Trololo\\View\\Images\\Ed{number}.png");
         }
     }
 
@@ -90,8 +90,8 @@ namespace Trololo.Domain
         public LadderTile(Point position)
         {
             IsBorder = false;
-            transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
-            texture = Resources.Ladder;
+            Transform = new Transform(position, new RectangleF(position.X, position.Y, 60, 60));
+            Texture = Resources.Ladder;
         }
     }
 }

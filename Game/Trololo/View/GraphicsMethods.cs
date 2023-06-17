@@ -34,11 +34,11 @@ internal static class GraphicsMethods
     {
         foreach (var tile in level.tiles)
         {
-            if (tile.texture != null)
+            if (tile.Texture != null)
             {
                 if (tile is GunTile && player.States.IsWithGun) 
                     continue;
-                g.Graphics.DrawImage(tile.texture, tile.transform.Position.X, tile.transform.Position.Y, tile.transform.HitBox.Width, tile.transform.HitBox.Height);
+                g.Graphics.DrawImage(tile.Texture, tile.Transform.Position.X, tile.Transform.Position.Y, tile.Transform.HitBox.Width, tile.Transform.HitBox.Height);
             }
         }
     }

@@ -62,7 +62,7 @@ namespace Trololo.Domain
             this.texture = textureRight;
 
             velocity = (float)10;
-            if(Game.currentLevel > 2)
+            if(Game.CurrentLevel > 2)
                 States.IsWithGun = true; 
             bullets = new List<Bullet>();
             States.IsInvincible = false;
@@ -106,7 +106,7 @@ namespace Trololo.Domain
 
                 bullets[i].Shoot();
 
-                if (!CollitionsControl.Collide(bullet.Transform.HitBox, bullet.Transform.Position.X, bullet.Transform.Position.Y, bullet.Transform.HitBox.Width, bullet.Transform.HitBox.Height, game.level.tiles))
+                if (!CollitionsControl.Collide(bullet.Transform.HitBox, bullet.Transform.Position.X, bullet.Transform.Position.Y, bullet.Transform.HitBox.Width, bullet.Transform.HitBox.Height, game.Level.tiles))
                 {
                     bullets.RemoveAt(i);
                     continue;
@@ -117,7 +117,7 @@ namespace Trololo.Domain
 
         private static void CheckEnemies(Game game, List<Bullet> bullets, Dictionary<Enemy, EnemyShoot> toDeleteEnemies, List<Bullet> toDeleteShoots, int i, Bullet bullet)
         {
-            foreach (var value in game.enemies.Keys)
+            foreach (var value in game.Enemies.Keys)
             {
                 if (bullet.Transform.HitBox.IntersectsWith(value.Transform.HitBox))
                 {

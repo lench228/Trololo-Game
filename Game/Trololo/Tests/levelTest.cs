@@ -75,8 +75,8 @@ namespace Trololo.Tests
             for (var i = 0; i < level.tiles.GetLength(0); i++)
                 for (var j = 0; j < level.tiles.GetLength(1); j++)
                 {
-                    var tile1transform = level.tiles[i, j].transform.Position;
-                    var tiles2transform = result[i, j].transform.Position;
+                    var tile1transform = level.tiles[i, j].Transform.Position;
+                    var tiles2transform = result[i, j].Transform.Position;
 
                     Assert.AreEqual(tile1transform.X, tiles2transform.X);
                     Assert.AreEqual(tile1transform.Y, tiles2transform.Y);
